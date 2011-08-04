@@ -32,7 +32,7 @@
 #include "io.h"
 #include "util.h"
 
-/*TESTE GIT*/
+/*TESTE GIT 2*/
 
 int get_device_current_coord(Point *uv){
 	char buff[100];
