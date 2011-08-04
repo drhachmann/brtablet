@@ -1,0 +1,5 @@
+saida-gui_common.o: gui/gui_common.c gui/gui_common.h util.h
+
+gui/gui_common.h:
+
+util.h:
