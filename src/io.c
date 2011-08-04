@@ -32,6 +32,8 @@
 #include "io.h"
 #include "util.h"
 
+/*TESTE GIT*/
+
 int get_device_current_coord(Point *uv){
 	char buff[100];
 	int sim_fd = open(PATH_SYSFS_POINT, O_RDWR);
