@@ -1,0 +1,1 @@
+cmd_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-2.6.38-10-generic/scripts/module-common.lds --build-id  -o /home/diego/Estágio/brtablet/src/driver/brtablet-driver.ko /home/diego/Estágio/brtablet/src/driver/brtablet-driver.o /home/diego/Estágio/brtablet/src/driver/brtablet-driver.mod.o
