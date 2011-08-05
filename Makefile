@@ -18,7 +18,6 @@
 #http://www.gnu.org/s/hello/manual/automake/Scripts.html
 
 
-
 pkgdatadir = $(datadir)/hello
 pkgincludedir = $(includedir)/hello
 pkglibdir = $(libdir)/hello
@@ -50,6 +49,15 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
+SOURCES =
+DIST_SOURCES =
+RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
+	html-recursive info-recursive install-data-recursive \
+	install-dvi-recursive install-exec-recursive \
+	install-html-recursive install-info-recursive \
+	install-pdf-recursive install-ps-recursive install-recursive \
+	installcheck-recursive installdirs-recursive pdf-recursive \
+	ps-recursive uninstall-recursive
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -71,17 +79,7 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(bootdir)" "$(DESTDIR)$(docdir)"
-SCRIPTS = $(boot_SCRIPTS)
-SOURCES =
-DIST_SOURCES =
-RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
-	html-recursive info-recursive install-data-recursive \
-	install-dvi-recursive install-exec-recursive \
-	install-html-recursive install-info-recursive \
-	install-pdf-recursive install-ps-recursive install-recursive \
-	installcheck-recursive installdirs-recursive pdf-recursive \
-	ps-recursive uninstall-recursive
+am__installdirs = "$(DESTDIR)$(docdir)"
 DATA = $(dist_doc_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
@@ -218,14 +216,13 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-SUBDIRS = src
-dist_doc_DATA = README
+AUTOMAKE_OPTIONS = foreign
+SUBDIRS = src/driver\
+			 src/attach\
+			 src/calibrator\
+			 scripts
 
-#brtablet_initdir = /home/diego
-#bin_DIR = /home/diego
-#configdir = /home/diego
-bootdir = /etc/init.d
-boot_SCRIPTS = scripts/init-brtablet.sh
+dist_doc_DATA = README
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -281,40 +278,6 @@ $(srcdir)/config.h.in:  $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
-install-bootSCRIPTS: $(boot_SCRIPTS)
-	@$(NORMAL_INSTALL)
-	test -z "$(bootdir)" || $(MKDIR_P) "$(DESTDIR)$(bootdir)"
-	@list='$(boot_SCRIPTS)'; test -n "$(bootdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  if test -f "$$d$$p"; then echo "$$d$$p"; echo "$$p"; else :; fi; \
-	done | \
-	sed -e 'p;s,.*/,,;n' \
-	    -e 'h;s|.*|.|' \
-	    -e 'p;x;s,.*/,,;$(transform)' | sed 'N;N;N;s,\n, ,g' | \
-	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1; } \
-	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
-	    if ($$2 == $$4) { files[d] = files[d] " " $$1; \
-	      if (++n[d] == $(am__install_max)) { \
-		print "f", d, files[d]; n[d] = 0; files[d] = "" } } \
-	    else { print "f", d "/" $$4, $$1 } } \
-	  END { for (d in files) print "f", d, files[d] }' | \
-	while read type dir files; do \
-	     if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
-	     test -z "$$files" || { \
-	       echo " $(INSTALL_SCRIPT) $$files '$(DESTDIR)$(bootdir)$$dir'"; \
-	       $(INSTALL_SCRIPT) $$files "$(DESTDIR)$(bootdir)$$dir" || exit $$?; \
-	     } \
-	; done
-
-uninstall-bootSCRIPTS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(boot_SCRIPTS)'; test -n "$(bootdir)" || exit 0; \
-	files=`for p in $$list; do echo "$$p"; done | \
-	       sed -e 's,.*/,,;$(transform)'`; \
-	test -n "$$list" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(bootdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(bootdir)" && rm -f $$files
 install-dist_docDATA: $(dist_doc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(docdir)" || $(MKDIR_P) "$(DESTDIR)$(docdir)"
@@ -648,10 +611,10 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(SCRIPTS) $(DATA) config.h
+all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bootdir)" "$(DESTDIR)$(docdir)"; do \
+	for dir in "$(DESTDIR)$(docdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -700,15 +663,14 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-bootSCRIPTS install-dist_docDATA
+install-data-am: install-dist_docDATA
 
 install-dvi: install-dvi-recursive
 
 install-dvi-am:
 
 install-exec-am:
-	@$(NORMAL_INSTALL)
-	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
+
 install-html: install-html-recursive
 
 install-html-am:
@@ -747,12 +709,10 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-bootSCRIPTS uninstall-dist_docDATA \
-	uninstall-local
+uninstall-am: uninstall-dist_docDATA uninstall-local
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) all \
-	ctags-recursive install-am install-exec-am install-strip \
-	tags-recursive
+	ctags-recursive install-am install-strip tags-recursive
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
 	all all-am am--refresh check check-am clean clean-generic \
@@ -760,26 +720,37 @@ uninstall-am: uninstall-bootSCRIPTS uninstall-dist_docDATA \
 	dist-lzma dist-shar dist-tarZ dist-xz dist-zip distcheck \
 	distclean distclean-generic distclean-hdr distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am info info-am install install-am install-bootSCRIPTS \
-	install-data install-data-am install-dist_docDATA install-dvi \
-	install-dvi-am install-exec install-exec-am install-exec-hook \
-	install-html install-html-am install-info install-info-am \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-bootSCRIPTS uninstall-dist_docDATA uninstall-local
+	html-am info info-am install install-am install-data \
+	install-data-am install-dist_docDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
+	tags-recursive uninstall uninstall-am uninstall-dist_docDATA \
+	uninstall-local
 
 
-install-exec-hook:
+#boot_SCRIPTS = scripts/brtablet-init.sh
+#bootdir = /etc/init.d
+
+#brtablet_initdir = /home/diego
+#bin_DIR = /home/diego
+#configdir = /home/diego
+
+install-post:
+	echo "install" > /etc/brtablet/install
 #	@if test -x /usr/sbin/update-rc.d; then \
 #		echo "/usr/sbin/update-rc.d default"; \
-#		update-rc.d init-brtablet.sh\
+#		mkdir -p /etc/brtablet
+#		update-rc.d init-brtablet.sh defaults
 #	fi
 
 uninstall-local:
-	update-rc.d init-brtablet remove
+	echo "uninstall" > /etc/brtablet/uninstall
+#	rm -rf /etc/brtablet/
+#	update-rc.d init-brtablet remove
 
 #EXTRA_DIST = $(bin_SCRIPTS)
 

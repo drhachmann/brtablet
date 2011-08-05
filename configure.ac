@@ -1,10 +1,11 @@
+
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.67])
 AC_INIT([hello], [0.1], [diego_hachmann@hotmail.com])
 AM_INIT_AUTOMAKE([-Werror foreign])
-AC_CONFIG_SRCDIR([src/io.c])
+AC_CONFIG_SRCDIR([src/attach/attach.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -26,8 +27,9 @@ AC_FUNC_MALLOC
 AC_CHECK_FUNCS([clock_gettime gettimeofday memmove memset regcomp])
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile
-					  src/gui/Makefile])
+                src/attach/Makefile
+					 src/calibrator/Makefile
+					 scripts/Makefile])
 
 AC_OUTPUT
 

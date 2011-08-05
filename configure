@@ -557,7 +557,7 @@ PACKAGE_STRING='hello 0.1'
 PACKAGE_BUGREPORT='diego_hachmann@hotmail.com'
 PACKAGE_URL=''
 
-ac_unique_file="src/io.c"
+ac_unique_file="src/attach/attach.c"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -4322,7 +4322,7 @@ fi
 done
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/gui/Makefile"
+ac_config_files="$ac_config_files Makefile src/attach/Makefile src/calibrator/Makefile scripts/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -5045,8 +5045,9 @@ do
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "src/gui/Makefile") CONFIG_FILES="$CONFIG_FILES src/gui/Makefile" ;;
+    "src/attach/Makefile") CONFIG_FILES="$CONFIG_FILES src/attach/Makefile" ;;
+    "src/calibrator/Makefile") CONFIG_FILES="$CONFIG_FILES src/calibrator/Makefile" ;;
+    "scripts/Makefile") CONFIG_FILES="$CONFIG_FILES scripts/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5 ;;
   esac
