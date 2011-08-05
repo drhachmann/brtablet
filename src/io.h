@@ -1,7 +1,6 @@
 #ifndef _IO_H_
 #define _IO_H_
 
-
 /*Data from user to driver*/
 #define PATH_SYSFS_DATA "/sys/devices/platform/vms/sysfs_data"
 

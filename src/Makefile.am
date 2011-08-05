@@ -1,8 +1,8 @@
 SUBDIRS = gui
 
-bin_PROGRAMS = saida
+bin_PROGRAMS = brtablet
 
-saida_SOURCES = calibrator_rts.c \
+brtablet_SOURCES = calibrator_rts.c \
 					io.c\
 					util.c\
 					main_common.c\
@@ -10,8 +10,8 @@ saida_SOURCES = calibrator_rts.c \
 					gui/gui_gtk.c\
 					gui/gui_common.c
 
-saida_LDADD = $(GTK_LIBS)
-saida_CFLAGS = $(GTK_CFLAGS)
+brtablet_LDADD = $(GTK_LIBS)
+brtablet_CFLAGS = $(GTK_CFLAGS)
  
 
 

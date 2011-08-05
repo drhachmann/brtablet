@@ -425,9 +425,6 @@ static void show_help(void)
 
 int inputattach(int argc, char **argv)
 {
-	puts("Ad");
-	printf("%d\n", argc);
-	puts(argv[0]);
 	unsigned long devt;
 	int ldisc;
 	struct input_types *type = NULL;
@@ -512,7 +509,7 @@ int inputattach(int argc, char **argv)
 				baud);
 		return EXIT_FAILURE;
 	}
-
+	return(0);//AKIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 	setline(fd, type->flags, type->speed);
 
 	if (type->flush)

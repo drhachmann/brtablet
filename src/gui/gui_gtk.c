@@ -121,7 +121,8 @@ static CommonEvent get_key_common_event(GdkEventKey *event){
 		case GDK_Escape: return Key_Esc;
 		case GDK_w: return Key_w;
 	}
-}
+	return Key_error;
+}	
 
 static gboolean on_key_press (GtkWidget *widget, GdkEventKey *event, gpointer user_data){
 	GuiInfoPtr gui_info = (GuiInfoPtr)user_data;

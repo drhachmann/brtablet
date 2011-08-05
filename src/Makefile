@@ -32,7 +32,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = saida$(EXEEXT)
+bin_PROGRAMS = brtablet$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -45,14 +45,14 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_saida_OBJECTS = saida-calibrator_rts.$(OBJEXT) saida-io.$(OBJEXT) \
-	saida-util.$(OBJEXT) saida-main_common.$(OBJEXT) \
-	saida-inputattach.$(OBJEXT) saida-gui_gtk.$(OBJEXT) \
-	saida-gui_common.$(OBJEXT)
-saida_OBJECTS = $(am_saida_OBJECTS)
+am_brtablet_OBJECTS = brtablet-calibrator_rts.$(OBJEXT) \
+	brtablet-io.$(OBJEXT) brtablet-util.$(OBJEXT) \
+	brtablet-main_common.$(OBJEXT) brtablet-inputattach.$(OBJEXT) \
+	brtablet-gui_gtk.$(OBJEXT) brtablet-gui_common.$(OBJEXT)
+brtablet_OBJECTS = $(am_brtablet_OBJECTS)
 am__DEPENDENCIES_1 =
-saida_DEPENDENCIES = $(am__DEPENDENCIES_1)
-saida_LINK = $(CCLD) $(saida_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+brtablet_DEPENDENCIES = $(am__DEPENDENCIES_1)
+brtablet_LINK = $(CCLD) $(brtablet_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -62,8 +62,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(saida_SOURCES)
-DIST_SOURCES = $(saida_SOURCES)
+SOURCES = $(brtablet_SOURCES)
+DIST_SOURCES = $(brtablet_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -105,11 +105,11 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run tar
-AUTOCONF = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/diego/Estágio/brtablet/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/diego/Estágio/brtablet/missing --run tar
+AUTOCONF = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/diego/Estágio/brtablet/missing --run automake-1.11
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -136,7 +136,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/diego/Estágio/brtablet/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = hello
@@ -154,10 +154,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/diego/Estágio/Calibrador/NOVO/src
-abs_srcdir = /home/diego/Estágio/Calibrador/NOVO/src
-abs_top_builddir = /home/diego/Estágio/Calibrador/NOVO
-abs_top_srcdir = /home/diego/Estágio/Calibrador/NOVO
+abs_builddir = /home/diego/Estágio/brtablet/src
+abs_srcdir = /home/diego/Estágio/brtablet/src
+abs_top_builddir = /home/diego/Estágio/brtablet
+abs_top_srcdir = /home/diego/Estágio/brtablet
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -176,7 +176,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/diego/Estágio/Calibrador/NOVO/install-sh
+install_sh = ${SHELL} /home/diego/Estágio/brtablet/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -197,7 +197,7 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 SUBDIRS = gui
-saida_SOURCES = calibrator_rts.c \
+brtablet_SOURCES = calibrator_rts.c \
 					io.c\
 					util.c\
 					main_common.c\
@@ -205,8 +205,8 @@ saida_SOURCES = calibrator_rts.c \
 					gui/gui_gtk.c\
 					gui/gui_common.c
 
-saida_LDADD = $(GTK_LIBS)
-saida_CFLAGS = $(GTK_CFLAGS)
+brtablet_LDADD = $(GTK_LIBS)
+brtablet_CFLAGS = $(GTK_CFLAGS)
 all: all-recursive
 
 .SUFFIXES:
@@ -278,9 +278,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-saida$(EXEEXT): $(saida_OBJECTS) $(saida_DEPENDENCIES) 
-	@rm -f saida$(EXEEXT)
-	$(saida_LINK) $(saida_OBJECTS) $(saida_LDADD) $(LIBS)
+brtablet$(EXEEXT): $(brtablet_OBJECTS) $(brtablet_DEPENDENCIES) 
+	@rm -f brtablet$(EXEEXT)
+	$(brtablet_LINK) $(brtablet_OBJECTS) $(brtablet_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -288,13 +288,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/saida-calibrator_rts.Po
-include ./$(DEPDIR)/saida-gui_common.Po
-include ./$(DEPDIR)/saida-gui_gtk.Po
-include ./$(DEPDIR)/saida-inputattach.Po
-include ./$(DEPDIR)/saida-io.Po
-include ./$(DEPDIR)/saida-main_common.Po
-include ./$(DEPDIR)/saida-util.Po
+include ./$(DEPDIR)/brtablet-calibrator_rts.Po
+include ./$(DEPDIR)/brtablet-gui_common.Po
+include ./$(DEPDIR)/brtablet-gui_gtk.Po
+include ./$(DEPDIR)/brtablet-inputattach.Po
+include ./$(DEPDIR)/brtablet-io.Po
+include ./$(DEPDIR)/brtablet-main_common.Po
+include ./$(DEPDIR)/brtablet-util.Po
 
 .c.o:
 	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -310,103 +310,103 @@ include ./$(DEPDIR)/saida-util.Po
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
-saida-calibrator_rts.o: calibrator_rts.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-calibrator_rts.o -MD -MP -MF $(DEPDIR)/saida-calibrator_rts.Tpo -c -o saida-calibrator_rts.o `test -f 'calibrator_rts.c' || echo '$(srcdir)/'`calibrator_rts.c
-	$(am__mv) $(DEPDIR)/saida-calibrator_rts.Tpo $(DEPDIR)/saida-calibrator_rts.Po
-#	source='calibrator_rts.c' object='saida-calibrator_rts.o' libtool=no \
+brtablet-calibrator_rts.o: calibrator_rts.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-calibrator_rts.o -MD -MP -MF $(DEPDIR)/brtablet-calibrator_rts.Tpo -c -o brtablet-calibrator_rts.o `test -f 'calibrator_rts.c' || echo '$(srcdir)/'`calibrator_rts.c
+	$(am__mv) $(DEPDIR)/brtablet-calibrator_rts.Tpo $(DEPDIR)/brtablet-calibrator_rts.Po
+#	source='calibrator_rts.c' object='brtablet-calibrator_rts.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-calibrator_rts.o `test -f 'calibrator_rts.c' || echo '$(srcdir)/'`calibrator_rts.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-calibrator_rts.o `test -f 'calibrator_rts.c' || echo '$(srcdir)/'`calibrator_rts.c
 
-saida-calibrator_rts.obj: calibrator_rts.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-calibrator_rts.obj -MD -MP -MF $(DEPDIR)/saida-calibrator_rts.Tpo -c -o saida-calibrator_rts.obj `if test -f 'calibrator_rts.c'; then $(CYGPATH_W) 'calibrator_rts.c'; else $(CYGPATH_W) '$(srcdir)/calibrator_rts.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-calibrator_rts.Tpo $(DEPDIR)/saida-calibrator_rts.Po
-#	source='calibrator_rts.c' object='saida-calibrator_rts.obj' libtool=no \
+brtablet-calibrator_rts.obj: calibrator_rts.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-calibrator_rts.obj -MD -MP -MF $(DEPDIR)/brtablet-calibrator_rts.Tpo -c -o brtablet-calibrator_rts.obj `if test -f 'calibrator_rts.c'; then $(CYGPATH_W) 'calibrator_rts.c'; else $(CYGPATH_W) '$(srcdir)/calibrator_rts.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-calibrator_rts.Tpo $(DEPDIR)/brtablet-calibrator_rts.Po
+#	source='calibrator_rts.c' object='brtablet-calibrator_rts.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-calibrator_rts.obj `if test -f 'calibrator_rts.c'; then $(CYGPATH_W) 'calibrator_rts.c'; else $(CYGPATH_W) '$(srcdir)/calibrator_rts.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-calibrator_rts.obj `if test -f 'calibrator_rts.c'; then $(CYGPATH_W) 'calibrator_rts.c'; else $(CYGPATH_W) '$(srcdir)/calibrator_rts.c'; fi`
 
-saida-io.o: io.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-io.o -MD -MP -MF $(DEPDIR)/saida-io.Tpo -c -o saida-io.o `test -f 'io.c' || echo '$(srcdir)/'`io.c
-	$(am__mv) $(DEPDIR)/saida-io.Tpo $(DEPDIR)/saida-io.Po
-#	source='io.c' object='saida-io.o' libtool=no \
+brtablet-io.o: io.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-io.o -MD -MP -MF $(DEPDIR)/brtablet-io.Tpo -c -o brtablet-io.o `test -f 'io.c' || echo '$(srcdir)/'`io.c
+	$(am__mv) $(DEPDIR)/brtablet-io.Tpo $(DEPDIR)/brtablet-io.Po
+#	source='io.c' object='brtablet-io.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-io.o `test -f 'io.c' || echo '$(srcdir)/'`io.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-io.o `test -f 'io.c' || echo '$(srcdir)/'`io.c
 
-saida-io.obj: io.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-io.obj -MD -MP -MF $(DEPDIR)/saida-io.Tpo -c -o saida-io.obj `if test -f 'io.c'; then $(CYGPATH_W) 'io.c'; else $(CYGPATH_W) '$(srcdir)/io.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-io.Tpo $(DEPDIR)/saida-io.Po
-#	source='io.c' object='saida-io.obj' libtool=no \
+brtablet-io.obj: io.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-io.obj -MD -MP -MF $(DEPDIR)/brtablet-io.Tpo -c -o brtablet-io.obj `if test -f 'io.c'; then $(CYGPATH_W) 'io.c'; else $(CYGPATH_W) '$(srcdir)/io.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-io.Tpo $(DEPDIR)/brtablet-io.Po
+#	source='io.c' object='brtablet-io.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-io.obj `if test -f 'io.c'; then $(CYGPATH_W) 'io.c'; else $(CYGPATH_W) '$(srcdir)/io.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-io.obj `if test -f 'io.c'; then $(CYGPATH_W) 'io.c'; else $(CYGPATH_W) '$(srcdir)/io.c'; fi`
 
-saida-util.o: util.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-util.o -MD -MP -MF $(DEPDIR)/saida-util.Tpo -c -o saida-util.o `test -f 'util.c' || echo '$(srcdir)/'`util.c
-	$(am__mv) $(DEPDIR)/saida-util.Tpo $(DEPDIR)/saida-util.Po
-#	source='util.c' object='saida-util.o' libtool=no \
+brtablet-util.o: util.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-util.o -MD -MP -MF $(DEPDIR)/brtablet-util.Tpo -c -o brtablet-util.o `test -f 'util.c' || echo '$(srcdir)/'`util.c
+	$(am__mv) $(DEPDIR)/brtablet-util.Tpo $(DEPDIR)/brtablet-util.Po
+#	source='util.c' object='brtablet-util.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-util.o `test -f 'util.c' || echo '$(srcdir)/'`util.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-util.o `test -f 'util.c' || echo '$(srcdir)/'`util.c
 
-saida-util.obj: util.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-util.obj -MD -MP -MF $(DEPDIR)/saida-util.Tpo -c -o saida-util.obj `if test -f 'util.c'; then $(CYGPATH_W) 'util.c'; else $(CYGPATH_W) '$(srcdir)/util.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-util.Tpo $(DEPDIR)/saida-util.Po
-#	source='util.c' object='saida-util.obj' libtool=no \
+brtablet-util.obj: util.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-util.obj -MD -MP -MF $(DEPDIR)/brtablet-util.Tpo -c -o brtablet-util.obj `if test -f 'util.c'; then $(CYGPATH_W) 'util.c'; else $(CYGPATH_W) '$(srcdir)/util.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-util.Tpo $(DEPDIR)/brtablet-util.Po
+#	source='util.c' object='brtablet-util.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-util.obj `if test -f 'util.c'; then $(CYGPATH_W) 'util.c'; else $(CYGPATH_W) '$(srcdir)/util.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-util.obj `if test -f 'util.c'; then $(CYGPATH_W) 'util.c'; else $(CYGPATH_W) '$(srcdir)/util.c'; fi`
 
-saida-main_common.o: main_common.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-main_common.o -MD -MP -MF $(DEPDIR)/saida-main_common.Tpo -c -o saida-main_common.o `test -f 'main_common.c' || echo '$(srcdir)/'`main_common.c
-	$(am__mv) $(DEPDIR)/saida-main_common.Tpo $(DEPDIR)/saida-main_common.Po
-#	source='main_common.c' object='saida-main_common.o' libtool=no \
+brtablet-main_common.o: main_common.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-main_common.o -MD -MP -MF $(DEPDIR)/brtablet-main_common.Tpo -c -o brtablet-main_common.o `test -f 'main_common.c' || echo '$(srcdir)/'`main_common.c
+	$(am__mv) $(DEPDIR)/brtablet-main_common.Tpo $(DEPDIR)/brtablet-main_common.Po
+#	source='main_common.c' object='brtablet-main_common.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-main_common.o `test -f 'main_common.c' || echo '$(srcdir)/'`main_common.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-main_common.o `test -f 'main_common.c' || echo '$(srcdir)/'`main_common.c
 
-saida-main_common.obj: main_common.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-main_common.obj -MD -MP -MF $(DEPDIR)/saida-main_common.Tpo -c -o saida-main_common.obj `if test -f 'main_common.c'; then $(CYGPATH_W) 'main_common.c'; else $(CYGPATH_W) '$(srcdir)/main_common.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-main_common.Tpo $(DEPDIR)/saida-main_common.Po
-#	source='main_common.c' object='saida-main_common.obj' libtool=no \
+brtablet-main_common.obj: main_common.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-main_common.obj -MD -MP -MF $(DEPDIR)/brtablet-main_common.Tpo -c -o brtablet-main_common.obj `if test -f 'main_common.c'; then $(CYGPATH_W) 'main_common.c'; else $(CYGPATH_W) '$(srcdir)/main_common.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-main_common.Tpo $(DEPDIR)/brtablet-main_common.Po
+#	source='main_common.c' object='brtablet-main_common.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-main_common.obj `if test -f 'main_common.c'; then $(CYGPATH_W) 'main_common.c'; else $(CYGPATH_W) '$(srcdir)/main_common.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-main_common.obj `if test -f 'main_common.c'; then $(CYGPATH_W) 'main_common.c'; else $(CYGPATH_W) '$(srcdir)/main_common.c'; fi`
 
-saida-inputattach.o: inputattach.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-inputattach.o -MD -MP -MF $(DEPDIR)/saida-inputattach.Tpo -c -o saida-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
-	$(am__mv) $(DEPDIR)/saida-inputattach.Tpo $(DEPDIR)/saida-inputattach.Po
-#	source='inputattach.c' object='saida-inputattach.o' libtool=no \
+brtablet-inputattach.o: inputattach.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-inputattach.o -MD -MP -MF $(DEPDIR)/brtablet-inputattach.Tpo -c -o brtablet-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
+	$(am__mv) $(DEPDIR)/brtablet-inputattach.Tpo $(DEPDIR)/brtablet-inputattach.Po
+#	source='inputattach.c' object='brtablet-inputattach.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
 
-saida-inputattach.obj: inputattach.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-inputattach.obj -MD -MP -MF $(DEPDIR)/saida-inputattach.Tpo -c -o saida-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-inputattach.Tpo $(DEPDIR)/saida-inputattach.Po
-#	source='inputattach.c' object='saida-inputattach.obj' libtool=no \
+brtablet-inputattach.obj: inputattach.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-inputattach.obj -MD -MP -MF $(DEPDIR)/brtablet-inputattach.Tpo -c -o brtablet-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-inputattach.Tpo $(DEPDIR)/brtablet-inputattach.Po
+#	source='inputattach.c' object='brtablet-inputattach.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
 
-saida-gui_gtk.o: gui/gui_gtk.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-gui_gtk.o -MD -MP -MF $(DEPDIR)/saida-gui_gtk.Tpo -c -o saida-gui_gtk.o `test -f 'gui/gui_gtk.c' || echo '$(srcdir)/'`gui/gui_gtk.c
-	$(am__mv) $(DEPDIR)/saida-gui_gtk.Tpo $(DEPDIR)/saida-gui_gtk.Po
-#	source='gui/gui_gtk.c' object='saida-gui_gtk.o' libtool=no \
+brtablet-gui_gtk.o: gui/gui_gtk.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-gui_gtk.o -MD -MP -MF $(DEPDIR)/brtablet-gui_gtk.Tpo -c -o brtablet-gui_gtk.o `test -f 'gui/gui_gtk.c' || echo '$(srcdir)/'`gui/gui_gtk.c
+	$(am__mv) $(DEPDIR)/brtablet-gui_gtk.Tpo $(DEPDIR)/brtablet-gui_gtk.Po
+#	source='gui/gui_gtk.c' object='brtablet-gui_gtk.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-gui_gtk.o `test -f 'gui/gui_gtk.c' || echo '$(srcdir)/'`gui/gui_gtk.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-gui_gtk.o `test -f 'gui/gui_gtk.c' || echo '$(srcdir)/'`gui/gui_gtk.c
 
-saida-gui_gtk.obj: gui/gui_gtk.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-gui_gtk.obj -MD -MP -MF $(DEPDIR)/saida-gui_gtk.Tpo -c -o saida-gui_gtk.obj `if test -f 'gui/gui_gtk.c'; then $(CYGPATH_W) 'gui/gui_gtk.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_gtk.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-gui_gtk.Tpo $(DEPDIR)/saida-gui_gtk.Po
-#	source='gui/gui_gtk.c' object='saida-gui_gtk.obj' libtool=no \
+brtablet-gui_gtk.obj: gui/gui_gtk.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-gui_gtk.obj -MD -MP -MF $(DEPDIR)/brtablet-gui_gtk.Tpo -c -o brtablet-gui_gtk.obj `if test -f 'gui/gui_gtk.c'; then $(CYGPATH_W) 'gui/gui_gtk.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_gtk.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-gui_gtk.Tpo $(DEPDIR)/brtablet-gui_gtk.Po
+#	source='gui/gui_gtk.c' object='brtablet-gui_gtk.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-gui_gtk.obj `if test -f 'gui/gui_gtk.c'; then $(CYGPATH_W) 'gui/gui_gtk.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_gtk.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-gui_gtk.obj `if test -f 'gui/gui_gtk.c'; then $(CYGPATH_W) 'gui/gui_gtk.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_gtk.c'; fi`
 
-saida-gui_common.o: gui/gui_common.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-gui_common.o -MD -MP -MF $(DEPDIR)/saida-gui_common.Tpo -c -o saida-gui_common.o `test -f 'gui/gui_common.c' || echo '$(srcdir)/'`gui/gui_common.c
-	$(am__mv) $(DEPDIR)/saida-gui_common.Tpo $(DEPDIR)/saida-gui_common.Po
-#	source='gui/gui_common.c' object='saida-gui_common.o' libtool=no \
+brtablet-gui_common.o: gui/gui_common.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-gui_common.o -MD -MP -MF $(DEPDIR)/brtablet-gui_common.Tpo -c -o brtablet-gui_common.o `test -f 'gui/gui_common.c' || echo '$(srcdir)/'`gui/gui_common.c
+	$(am__mv) $(DEPDIR)/brtablet-gui_common.Tpo $(DEPDIR)/brtablet-gui_common.Po
+#	source='gui/gui_common.c' object='brtablet-gui_common.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-gui_common.o `test -f 'gui/gui_common.c' || echo '$(srcdir)/'`gui/gui_common.c
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-gui_common.o `test -f 'gui/gui_common.c' || echo '$(srcdir)/'`gui/gui_common.c
 
-saida-gui_common.obj: gui/gui_common.c
-	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -MT saida-gui_common.obj -MD -MP -MF $(DEPDIR)/saida-gui_common.Tpo -c -o saida-gui_common.obj `if test -f 'gui/gui_common.c'; then $(CYGPATH_W) 'gui/gui_common.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_common.c'; fi`
-	$(am__mv) $(DEPDIR)/saida-gui_common.Tpo $(DEPDIR)/saida-gui_common.Po
-#	source='gui/gui_common.c' object='saida-gui_common.obj' libtool=no \
+brtablet-gui_common.obj: gui/gui_common.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -MT brtablet-gui_common.obj -MD -MP -MF $(DEPDIR)/brtablet-gui_common.Tpo -c -o brtablet-gui_common.obj `if test -f 'gui/gui_common.c'; then $(CYGPATH_W) 'gui/gui_common.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_common.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet-gui_common.Tpo $(DEPDIR)/brtablet-gui_common.Po
+#	source='gui/gui_common.c' object='brtablet-gui_common.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(saida_CFLAGS) $(CFLAGS) -c -o saida-gui_common.obj `if test -f 'gui/gui_common.c'; then $(CYGPATH_W) 'gui/gui_common.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_common.c'; fi`
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_CFLAGS) $(CFLAGS) -c -o brtablet-gui_common.obj `if test -f 'gui/gui_common.c'; then $(CYGPATH_W) 'gui/gui_common.c'; else $(CYGPATH_W) '$(srcdir)/gui/gui_common.c'; fi`
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.

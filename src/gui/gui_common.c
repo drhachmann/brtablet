@@ -28,6 +28,7 @@
 		case Key_w:	
 				write_calib_mtx(gui_info);
 				write_calib_uvz(gui_info);
+				break;
 	}	
 	if(gui_info->current_X==N_COLUMN)
 			gui_info->current_X=0;

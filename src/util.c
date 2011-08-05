@@ -42,3 +42,8 @@ int handle_error_bad_file(char *path){
 	puts("");
 	exit(-1);
 }
+
+void msg_error(char *msg){
+	printf("Error: %s\n", msg);
+	puts("");
+}

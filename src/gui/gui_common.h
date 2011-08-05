@@ -22,6 +22,7 @@ typedef struct{
 }GuiInfo, *GuiInfoPtr;
 
 typedef enum {
+	Key_error,
 	Key_Down,
 	Key_Up,
 	Key_Left,

@@ -27,6 +27,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 
 #include "io.h"
@@ -60,6 +61,7 @@ int write_calib_uvz(Point uv[N_ROW][N_COLUMN]){
 	}
 	fclose(fp);
 }
+
 
 int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 	int i, j, w, k;
@@ -153,5 +155,57 @@ int uvz_to_driver(){
 	fsync(sim_fd);	
 	fclose(fp);
 	close(sim_fd);
+}
+
+
+static void file_backup(char *src){
+	struct stat stStat;
+	char dst[strlen(src)+5];
+	char ext[] = ".bkp";
+	strcpy(dst, src);
+	strcat(dst, ext);
+	int errcode = stat ("uv", &stStat);
+	if(errcode==0){ //existe
+		
+	}
+	char cmd[strlen(dst)*2+10];
+	sprintf(cmd, "cp %s %s", src, dst);
+	system(cmd);
+}
+
+static void file_move(char *src1, char *dst1){
+	FILE *from = fopen(src1, "r");
+	FILE *to = fopen(dst1, "w");
+	printf("from %s to %s\n", src1, dst1);
+	char ch;
+/* copy the file */
+  while(!feof(from)) {
+	
+    ch = fgetc(from);
+	 printf("%c", ch);
+    if(ferror(from)) {
+      printf("Error reading source file.\n");
+      exit(1);
+    }
+    if(!feof(from)) fputc(ch, to);
+    if(ferror(to)) {
+      printf("Error writing destination file.\n");
+      exit(1);
+    }
+  }
+	fclose(from);
+	fclose(to);
+}
+
+static void file_swap(char *src1, char *src2){
+	int len1 = strlen(src1);
+	char name_tmp[len1+10];
+	strcpy(name_tmp, src1);
+	strcat(name_tmp, ".tmp");
+	char cmd[len1*2+10];
+	file_move(src1, name_tmp);
+	file_move(src2, src1);
+	file_move(name_tmp, src2);
+	remove(name_tmp);
 }
 
