@@ -77,7 +77,7 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 			_uv[0] = uv[i][j]; _uv[1] = uv[i][j+1]; _uv[2]=uv[i+1][j+1];
 			_xy[0] = xy[i][j]; _xy[1] = xy[i][j+1]; _xy[2]=xy[i+1][j+1];
 			memset(coef, 0, sizeof(coef));
-			get_coeficientes(_uv, _xy, coef);				
+			//get_coeficientes(_uv, _xy, coef);				
 			for(w=0; w<3; w++)
 				for(k=0; k<3; k++)
 					fprintf(fp, "%d ", (int)(coef[w][k]*(1<<N_SHIFT)));
@@ -86,13 +86,22 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 			_uv[0] = uv[i+1][j+1]; _uv[1] = uv[i+1][j]; _uv[2]=uv[i][j];	
 			_xy[0] = xy[i+1][j+1]; _xy[1] = xy[i+1][j]; _xy[2]=xy[i][j];	
 			memset(coef, 0, sizeof(coef));
-			get_coeficientes(_uv, _xy, coef);	
+			//get_coeficientes(_uv, _xy, coef);	
 			for(w=0; w<3; w++)
 				for(k=0; k<3; k++)
 					fprintf(fp, "%d ", (int)(coef[w][k]*(1<<N_SHIFT)));
 		}
 	}
 	fclose(fp);
+}
+
+int driver_set_operation(char *drv, int op, int val){
+	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
+	char buff[50];
+	int s = sprintf(buff,"%d %d", op, val);
+	write(sim_fd, buff, s);
+	fsync(sim_fd);
+	close(sim_fd);
 }
 
 int mtx_to_driver(){
@@ -105,11 +114,10 @@ int mtx_to_driver(){
 	FILE *fp = fopen(PATH_FILE_MTX, "r");
 	if(fp==NULL){
 		return handle_error_file_open(PATH_FILE_MTX);
-		
 	}
 	int ini=0;
 	memset(buff, ' ', sizeof(buff));
-	for(i=0; i<4*4*2; i++){
+	for(i=0; i<(N_COLUMN-1)*(N_ROW)*2; i++){
 		for(j=0; j<3; j++){
 			for(w=0; w<3; w++){
 				if(fscanf(fp, "%d", &temp)<1){
@@ -123,6 +131,7 @@ int mtx_to_driver(){
 		if(fread(buff, 1, fim-ini+1, fp)<fim-ini+1)return -1;
 		buff[fim-ini+1]=0;
 		fseek (fp , fim , SEEK_SET);
+		driver_set_operation(PATH_SYSFS_OPERATION, OP_MTX, i);
 		write(sim_fd, buff, fim-ini+1);
 		ini = fim+1;
 		fsync(sim_fd);	
@@ -151,6 +160,7 @@ int uvz_to_driver(){
 
 	}
 	buff[fim]=0;
+	driver_set_operation(PATH_SYSFS_OPERATION, OP_POINT, 0);
 	write(sim_fd, buff, fim);
 	fsync(sim_fd);	
 	fclose(fp);
@@ -208,4 +218,8 @@ static void file_swap(char *src1, char *src2){
 	file_move(name_tmp, src2);
 	remove(name_tmp);
 }
+
+//int main(void){
+//	uvz_to_driver();
+//}
 

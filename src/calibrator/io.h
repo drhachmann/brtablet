@@ -1,11 +1,15 @@
 #ifndef _IO_H_
 #define _IO_H_
 
-/*Data from user to driver*/
-#define PATH_SYSFS_DATA "/sys/devices/platform/vms/sysfs_data"
 
-/*Set operation in driver*/
-#define PATH_SYSFS_OPERATION "/sys/devices/platform/vms/sysfs_operation"
+#define OP_MTX 1
+#define OP_POINT 2
+
+/*Data from user to driver*/
+#define PATH_SYSFS_DATA "/sys/devices/platform/vms/data_store"
+
+/*Operation from user to driver*/
+#define PATH_SYSFS_OPERATION "/sys/devices/platform/vms/operation_store"
 
 /*Current point from driver*/
 #define PATH_SYSFS_POINT "/sys/devices/platform/vms/point"
@@ -26,4 +30,5 @@
 #define N_SHIFT 13
 
 #endif
+
 

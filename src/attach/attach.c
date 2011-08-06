@@ -60,7 +60,7 @@ static int readchar(int fd, unsigned char *c, int timeout)
 	fd_set set;
 
 	tv.tv_sec = 0;
-	tv.tv_usec = timeout * 1000;
+	tv.tv_usec = timeout * 1000; /*100ms*/
 
 	FD_ZERO(&set);
 	FD_SET(fd, &set);
@@ -513,6 +513,8 @@ int inputattach(int argc, char **argv){
 	//return(0);//AKIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 	setline(fd, type->flags, type->speed);
 
+
+	/*acho que é aki o bloqueio*/
 	if (type->flush)
 		while (!readchar(fd, &c, 100))
 			/* empty */;
@@ -543,11 +545,11 @@ int inputattach(int argc, char **argv){
 		perror("inputattach");
 		retval = EXIT_FAILURE;
 	}
-
+	/*pode ser aki*/
 	read(fd, NULL, 0);
 
 	ldisc = 0;
-	ioctl(fd, TIOCSETD, &ldisc);
+	ioctl(fd, TIOCSETD, &ldisc);/*ou aki*/
 	close(fd);
 
 	return retval;

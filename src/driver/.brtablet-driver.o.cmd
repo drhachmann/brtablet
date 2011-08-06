@@ -3,42 +3,19 @@ cmd_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := gcc -Wp,-MD,/h
 source_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := /home/diego/Estágio/brtablet/src/driver/brtablet-driver.c
 
 deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
-  include/linux/fs.h \
-    $(wildcard include/config/sysfs.h) \
-    $(wildcard include/config/smp.h) \
-    $(wildcard include/config/quota.h) \
-    $(wildcard include/config/fsnotify.h) \
-    $(wildcard include/config/ima.h) \
-    $(wildcard include/config/security.h) \
-    $(wildcard include/config/fs/posix/acl.h) \
-    $(wildcard include/config/preempt.h) \
-    $(wildcard include/config/epoll.h) \
-    $(wildcard include/config/debug/writecount.h) \
-    $(wildcard include/config/file/locking.h) \
-    $(wildcard include/config/auditsyscall.h) \
-    $(wildcard include/config/block.h) \
-    $(wildcard include/config/fs/xip.h) \
-    $(wildcard include/config/migration.h) \
-  include/linux/limits.h \
-  include/linux/ioctl.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ioctl.h \
-  include/asm-generic/ioctl.h \
-  include/linux/blk_types.h \
-    $(wildcard include/config/blk/dev/integrity.h) \
-  include/linux/types.h \
-    $(wildcard include/config/uid16.h) \
+  include/linux/delay.h \
+  include/linux/kernel.h \
     $(wildcard include/config/lbdaf.h) \
-    $(wildcard include/config/phys/addr/t/64bit.h) \
-    $(wildcard include/config/64bit.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/types.h \
-    $(wildcard include/config/x86/64.h) \
-    $(wildcard include/config/highmem64g.h) \
-  include/asm-generic/types.h \
-  include/asm-generic/int-ll64.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/bitsperlong.h \
-  include/asm-generic/bitsperlong.h \
-  include/linux/posix_types.h \
-  include/linux/stddef.h \
+    $(wildcard include/config/preempt/voluntary.h) \
+    $(wildcard include/config/debug/spinlock/sleep.h) \
+    $(wildcard include/config/prove/locking.h) \
+    $(wildcard include/config/ring/buffer.h) \
+    $(wildcard include/config/tracing.h) \
+    $(wildcard include/config/numa.h) \
+    $(wildcard include/config/compaction.h) \
+    $(wildcard include/config/ftrace/mcount/record.h) \
+  /usr/lib/i386-linux-gnu/gcc/i686-linux-gnu/4.5.2/include/stdarg.h \
+  include/linux/linkage.h \
   include/linux/compiler.h \
     $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
@@ -49,63 +26,32 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/posix_types.h \
-    $(wildcard include/config/x86/32.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/posix_types_32.h \
-  include/linux/linkage.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/linkage.h \
+    $(wildcard include/config/x86/32.h) \
+    $(wildcard include/config/x86/64.h) \
     $(wildcard include/config/x86/alignment/16.h) \
   include/linux/stringify.h \
-  include/linux/wait.h \
-    $(wildcard include/config/lockdep.h) \
-  include/linux/list.h \
-    $(wildcard include/config/debug/list.h) \
-  include/linux/poison.h \
-    $(wildcard include/config/illegal/pointer/value.h) \
-  include/linux/prefetch.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/processor.h \
-    $(wildcard include/config/x86/vsmp.h) \
-    $(wildcard include/config/cc/stackprotector.h) \
-    $(wildcard include/config/paravirt.h) \
-    $(wildcard include/config/m386.h) \
-    $(wildcard include/config/m486.h) \
-    $(wildcard include/config/x86/debugctlmsr.h) \
-    $(wildcard include/config/cpu/sup/amd.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/processor-flags.h \
-    $(wildcard include/config/vm86.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/vm86.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ptrace.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ptrace-abi.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/segment.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/page_types.h \
-  include/linux/const.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/page_32_types.h \
-    $(wildcard include/config/highmem4g.h) \
-    $(wildcard include/config/page/offset.h) \
-    $(wildcard include/config/x86/pae.h) \
-  include/linux/init.h \
-    $(wildcard include/config/modules.h) \
-    $(wildcard include/config/hotplug.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/math_emu.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/sigcontext.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/current.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/percpu.h \
-    $(wildcard include/config/x86/64/smp.h) \
-  include/linux/kernel.h \
-    $(wildcard include/config/preempt/voluntary.h) \
-    $(wildcard include/config/debug/spinlock/sleep.h) \
-    $(wildcard include/config/prove/locking.h) \
-    $(wildcard include/config/ring/buffer.h) \
-    $(wildcard include/config/tracing.h) \
-    $(wildcard include/config/numa.h) \
-    $(wildcard include/config/compaction.h) \
-    $(wildcard include/config/ftrace/mcount/record.h) \
-  /usr/lib/i386-linux-gnu/gcc/i686-linux-gnu/4.5.2/include/stdarg.h \
+  include/linux/stddef.h \
+  include/linux/types.h \
+    $(wildcard include/config/uid16.h) \
+    $(wildcard include/config/phys/addr/t/64bit.h) \
+    $(wildcard include/config/64bit.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/types.h \
+    $(wildcard include/config/highmem64g.h) \
+  include/asm-generic/types.h \
+  include/asm-generic/int-ll64.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/bitsperlong.h \
+  include/asm-generic/bitsperlong.h \
+  include/linux/posix_types.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/posix_types.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/posix_types_32.h \
   include/linux/bitops.h \
     $(wildcard include/config/generic/find/last/bit.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/bitops.h \
     $(wildcard include/config/x86/cmov.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/alternative.h \
+    $(wildcard include/config/smp.h) \
+    $(wildcard include/config/paravirt.h) \
     $(wildcard include/config/dynamic/ftrace.h) \
   include/linux/jump_label.h \
     $(wildcard include/config/jump/label.h) \
@@ -119,6 +65,7 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/required-features.h \
     $(wildcard include/config/x86/minimum/cpu/family.h) \
     $(wildcard include/config/math/emulation.h) \
+    $(wildcard include/config/x86/pae.h) \
     $(wildcard include/config/x86/cmpxchg64.h) \
     $(wildcard include/config/x86/use/3dnow.h) \
   include/asm-generic/bitops/find.h \
@@ -151,6 +98,49 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/div64.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/delay.h \
+  include/linux/module.h \
+    $(wildcard include/config/symbol/prefix.h) \
+    $(wildcard include/config/sysfs.h) \
+    $(wildcard include/config/modules.h) \
+    $(wildcard include/config/modversions.h) \
+    $(wildcard include/config/unused/symbols.h) \
+    $(wildcard include/config/kallsyms.h) \
+    $(wildcard include/config/tracepoints.h) \
+    $(wildcard include/config/event/tracing.h) \
+    $(wildcard include/config/module/unload.h) \
+    $(wildcard include/config/constructors.h) \
+    $(wildcard include/config/debug/set/module/ronx.h) \
+  include/linux/list.h \
+    $(wildcard include/config/debug/list.h) \
+  include/linux/poison.h \
+    $(wildcard include/config/illegal/pointer/value.h) \
+  include/linux/prefetch.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/processor.h \
+    $(wildcard include/config/x86/vsmp.h) \
+    $(wildcard include/config/cc/stackprotector.h) \
+    $(wildcard include/config/m386.h) \
+    $(wildcard include/config/m486.h) \
+    $(wildcard include/config/x86/debugctlmsr.h) \
+    $(wildcard include/config/cpu/sup/amd.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/processor-flags.h \
+    $(wildcard include/config/vm86.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/vm86.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ptrace.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ptrace-abi.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/segment.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/page_types.h \
+  include/linux/const.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/page_32_types.h \
+    $(wildcard include/config/highmem4g.h) \
+    $(wildcard include/config/page/offset.h) \
+  include/linux/init.h \
+    $(wildcard include/config/hotplug.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/math_emu.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/sigcontext.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/current.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/percpu.h \
+    $(wildcard include/config/x86/64/smp.h) \
   include/asm-generic/percpu.h \
     $(wildcard include/config/debug/preempt.h) \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
@@ -216,6 +206,9 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   include/asm-generic/getorder.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/msr.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/msr-index.h \
+  include/linux/ioctl.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ioctl.h \
+  include/asm-generic/ioctl.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
@@ -228,9 +221,15 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/x86/internode/cache/shift.h) \
   include/linux/math64.h \
   include/linux/err.h \
+  include/linux/stat.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/stat.h \
+  include/linux/time.h \
+    $(wildcard include/config/arch/uses/gettimeoffset.h) \
+  include/linux/seqlock.h \
   include/linux/spinlock.h \
     $(wildcard include/config/debug/spinlock.h) \
     $(wildcard include/config/generic/lockbreak.h) \
+    $(wildcard include/config/preempt.h) \
   include/linux/preempt.h \
     $(wildcard include/config/preempt/notifiers.h) \
   include/linux/thread_info.h \
@@ -246,6 +245,7 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   include/linux/spinlock_types.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
+    $(wildcard include/config/lockdep.h) \
     $(wildcard include/config/lock/stat.h) \
     $(wildcard include/config/prove/rcu.h) \
   include/linux/rwlock_types.h \
@@ -282,48 +282,51 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/inline/write/unlock/irq.h) \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
-  include/linux/kdev_t.h \
-  include/linux/dcache.h \
-  include/linux/rculist.h \
-  include/linux/rcupdate.h \
-    $(wildcard include/config/rcu/torture/test.h) \
-    $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/no/hz.h) \
-    $(wildcard include/config/tree/rcu.h) \
-    $(wildcard include/config/tree/preempt/rcu.h) \
-    $(wildcard include/config/tiny/rcu.h) \
-    $(wildcard include/config/tiny/preempt/rcu.h) \
-    $(wildcard include/config/debug/objects/rcu/head.h) \
-    $(wildcard include/config/preempt/rt.h) \
-  include/linux/seqlock.h \
-  include/linux/completion.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
-  include/linux/rcutree.h \
-  include/linux/rculist_bl.h \
-  include/linux/list_bl.h \
-  include/linux/path.h \
-  include/linux/stat.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/stat.h \
-  include/linux/time.h \
-    $(wildcard include/config/arch/uses/gettimeoffset.h) \
-  include/linux/radix-tree.h \
-  include/linux/prio_tree.h \
-  include/linux/pid.h \
+  include/linux/kmod.h \
+  include/linux/gfp.h \
+    $(wildcard include/config/zone/dma.h) \
+    $(wildcard include/config/zone/dma32.h) \
+    $(wildcard include/config/debug/vm.h) \
+  include/linux/mmzone.h \
+    $(wildcard include/config/force/max/zoneorder.h) \
+    $(wildcard include/config/memory/hotplug.h) \
+    $(wildcard include/config/arch/populates/node/map.h) \
+    $(wildcard include/config/flat/node/mem/map.h) \
+    $(wildcard include/config/cgroup/mem/res/ctlr.h) \
+    $(wildcard include/config/no/bootmem.h) \
+    $(wildcard include/config/have/memory/present.h) \
+    $(wildcard include/config/have/memoryless/nodes.h) \
+    $(wildcard include/config/need/node/memmap/size.h) \
+    $(wildcard include/config/need/multiple/nodes.h) \
+    $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
+    $(wildcard include/config/sparsemem/extreme.h) \
+    $(wildcard include/config/nodes/span/other/nodes.h) \
+    $(wildcard include/config/holes/in/zone.h) \
+    $(wildcard include/config/arch/has/holes/memorymodel.h) \
+  include/linux/wait.h \
+  include/linux/numa.h \
+    $(wildcard include/config/nodes/shift.h) \
+  include/linux/nodemask.h \
+  include/linux/pageblock-flags.h \
+    $(wildcard include/config/hugetlb/page/size/variable.h) \
+  include/generated/bounds.h \
+  include/linux/memory_hotplug.h \
+    $(wildcard include/config/memory/hotremove.h) \
+    $(wildcard include/config/have/arch/nodedata/extension.h) \
+  include/linux/notifier.h \
+  include/linux/errno.h \
   include/linux/mutex.h \
     $(wildcard include/config/debug/mutexes.h) \
     $(wildcard include/config/have/arch/mutex/cpu/relax.h) \
-  include/linux/capability.h \
-  include/linux/semaphore.h \
-  include/linux/fiemap.h \
-  include/linux/quota.h \
-    $(wildcard include/config/quota/netlink/interface.h) \
-  include/linux/errno.h \
   include/linux/rwsem.h \
     $(wildcard include/config/rwsem/generic/spinlock.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/rwsem.h \
-  include/linux/percpu_counter.h \
+  include/linux/srcu.h \
+  include/linux/topology.h \
+    $(wildcard include/config/sched/smt.h) \
+    $(wildcard include/config/sched/mc.h) \
+    $(wildcard include/config/sched/book.h) \
+    $(wildcard include/config/use/percpu/numa/node/id.h) \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/smp.h \
@@ -342,12 +345,10 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   include/linux/apm_bios.h \
   include/linux/edd.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/e820.h \
-    $(wildcard include/config/nodes/shift.h) \
     $(wildcard include/config/efi.h) \
     $(wildcard include/config/intel/txt.h) \
     $(wildcard include/config/hibernation.h) \
     $(wildcard include/config/memtest.h) \
-  include/linux/numa.h \
   include/linux/ioport.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/ist.h \
   include/video/edid.h \
@@ -355,8 +356,6 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/apicdef.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/apic.h \
     $(wildcard include/config/x86/x2apic.h) \
-  include/linux/delay.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/delay.h \
   include/linux/pm.h \
     $(wildcard include/config/pm.h) \
     $(wildcard include/config/pm/sleep.h) \
@@ -379,6 +378,10 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/timex.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/tsc.h \
     $(wildcard include/config/x86/tsc.h) \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/completion.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/fixmap.h \
     $(wildcard include/config/provide/ohci1394/dma/init.h) \
     $(wildcard include/config/x86/visws/apic.h) \
@@ -400,91 +403,6 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
     $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
   include/linux/pfn.h \
-  include/linux/dqblk_xfs.h \
-  include/linux/dqblk_v1.h \
-  include/linux/dqblk_v2.h \
-  include/linux/dqblk_qtree.h \
-  include/linux/nfs_fs_i.h \
-  include/linux/nfs.h \
-  include/linux/sunrpc/msg_prot.h \
-  include/linux/inet.h \
-  include/linux/fcntl.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/fcntl.h \
-  include/asm-generic/fcntl.h \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/uaccess.h \
-    $(wildcard include/config/x86/wp/works/ok.h) \
-    $(wildcard include/config/x86/intel/usercopy.h) \
-  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/uaccess_32.h \
-    $(wildcard include/config/debug/strict/user/copy/checks.h) \
-  include/linux/pci.h \
-    $(wildcard include/config/pci/iov.h) \
-    $(wildcard include/config/pcieaspm.h) \
-    $(wildcard include/config/pci/msi.h) \
-    $(wildcard include/config/pci.h) \
-    $(wildcard include/config/pcieportbus.h) \
-    $(wildcard include/config/pcieaer.h) \
-    $(wildcard include/config/pcie/ecrc.h) \
-    $(wildcard include/config/ht/irq.h) \
-    $(wildcard include/config/pci/domains.h) \
-    $(wildcard include/config/pci/quirks.h) \
-    $(wildcard include/config/hotplug/pci.h) \
-  include/linux/pci_regs.h \
-  include/linux/mod_devicetable.h \
-  include/linux/kobject.h \
-  include/linux/sysfs.h \
-  include/linux/kobject_ns.h \
-  include/linux/kref.h \
-  include/linux/device.h \
-    $(wildcard include/config/of.h) \
-    $(wildcard include/config/debug/devres.h) \
-    $(wildcard include/config/devtmpfs.h) \
-    $(wildcard include/config/sysfs/deprecated.h) \
-  include/linux/klist.h \
-  include/linux/module.h \
-    $(wildcard include/config/symbol/prefix.h) \
-    $(wildcard include/config/modversions.h) \
-    $(wildcard include/config/unused/symbols.h) \
-    $(wildcard include/config/kallsyms.h) \
-    $(wildcard include/config/tracepoints.h) \
-    $(wildcard include/config/event/tracing.h) \
-    $(wildcard include/config/module/unload.h) \
-    $(wildcard include/config/constructors.h) \
-    $(wildcard include/config/debug/set/module/ronx.h) \
-  include/linux/kmod.h \
-  include/linux/gfp.h \
-    $(wildcard include/config/zone/dma.h) \
-    $(wildcard include/config/zone/dma32.h) \
-    $(wildcard include/config/debug/vm.h) \
-  include/linux/mmzone.h \
-    $(wildcard include/config/force/max/zoneorder.h) \
-    $(wildcard include/config/memory/hotplug.h) \
-    $(wildcard include/config/arch/populates/node/map.h) \
-    $(wildcard include/config/flat/node/mem/map.h) \
-    $(wildcard include/config/cgroup/mem/res/ctlr.h) \
-    $(wildcard include/config/no/bootmem.h) \
-    $(wildcard include/config/have/memory/present.h) \
-    $(wildcard include/config/have/memoryless/nodes.h) \
-    $(wildcard include/config/need/node/memmap/size.h) \
-    $(wildcard include/config/need/multiple/nodes.h) \
-    $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
-    $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/nodes/span/other/nodes.h) \
-    $(wildcard include/config/holes/in/zone.h) \
-    $(wildcard include/config/arch/has/holes/memorymodel.h) \
-  include/linux/nodemask.h \
-  include/linux/pageblock-flags.h \
-    $(wildcard include/config/hugetlb/page/size/variable.h) \
-  include/generated/bounds.h \
-  include/linux/memory_hotplug.h \
-    $(wildcard include/config/memory/hotremove.h) \
-    $(wildcard include/config/have/arch/nodedata/extension.h) \
-  include/linux/notifier.h \
-  include/linux/srcu.h \
-  include/linux/topology.h \
-    $(wildcard include/config/sched/smt.h) \
-    $(wildcard include/config/sched/mc.h) \
-    $(wildcard include/config/sched/book.h) \
-    $(wildcard include/config/use/percpu/numa/node/id.h) \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/topology.h \
     $(wildcard include/config/x86/ht.h) \
     $(wildcard include/config/x86/64/acpi/numa.h) \
@@ -507,15 +425,31 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/mm/owner.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/auxvec.h \
+  include/linux/prio_tree.h \
   include/linux/rbtree.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
+  include/linux/kobject.h \
+  include/linux/sysfs.h \
+  include/linux/kobject_ns.h \
+  include/linux/kref.h \
   include/linux/moduleparam.h \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \
     $(wildcard include/config/ppc64.h) \
   include/linux/tracepoint.h \
+  include/linux/rcupdate.h \
+    $(wildcard include/config/rcu/torture/test.h) \
+    $(wildcard include/config/preempt/rcu.h) \
+    $(wildcard include/config/no/hz.h) \
+    $(wildcard include/config/tree/rcu.h) \
+    $(wildcard include/config/tree/preempt/rcu.h) \
+    $(wildcard include/config/tiny/rcu.h) \
+    $(wildcard include/config/tiny/preempt/rcu.h) \
+    $(wildcard include/config/debug/objects/rcu/head.h) \
+    $(wildcard include/config/preempt/rt.h) \
+  include/linux/rcutree.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/module.h \
     $(wildcard include/config/m586.h) \
     $(wildcard include/config/m586tsc.h) \
@@ -542,19 +476,133 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
   include/asm-generic/module.h \
   include/trace/events/module.h \
   include/trace/define_trace.h \
+  include/linux/slab.h \
+    $(wildcard include/config/slab/debug.h) \
+    $(wildcard include/config/failslab.h) \
+    $(wildcard include/config/slub.h) \
+    $(wildcard include/config/slob.h) \
+    $(wildcard include/config/debug/slab.h) \
+    $(wildcard include/config/slab.h) \
+  include/linux/slub_def.h \
+    $(wildcard include/config/slub/stats.h) \
+    $(wildcard include/config/slub/debug.h) \
+  include/linux/kmemleak.h \
+    $(wildcard include/config/debug/kmemleak.h) \
+  include/linux/interrupt.h \
+    $(wildcard include/config/generic/hardirqs.h) \
+    $(wildcard include/config/generic/irq/probe.h) \
+  include/linux/irqreturn.h \
+  include/linux/irqnr.h \
+  include/linux/hardirq.h \
+    $(wildcard include/config/bkl.h) \
+    $(wildcard include/config/virt/cpu/accounting.h) \
+    $(wildcard include/config/irq/time/accounting.h) \
+  include/linux/ftrace_irq.h \
+    $(wildcard include/config/ftrace/nmi/enter.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/hardirq.h \
+    $(wildcard include/config/x86/thermal/vector.h) \
+    $(wildcard include/config/x86/mce/threshold.h) \
+  include/linux/irq.h \
+    $(wildcard include/config/s390.h) \
+    $(wildcard include/config/irq/per/cpu.h) \
+    $(wildcard include/config/generic/hardirqs/no/deprecated.h) \
+    $(wildcard include/config/irq/release/method.h) \
+    $(wildcard include/config/generic/pending/irq.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/irq.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/irq_regs.h \
+  include/linux/irqdesc.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/hw_irq.h \
+    $(wildcard include/config/intr/remap.h) \
+  include/linux/profile.h \
+    $(wildcard include/config/profiling.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/sections.h \
+    $(wildcard include/config/debug/rodata.h) \
+  include/asm-generic/sections.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/uaccess.h \
+    $(wildcard include/config/x86/wp/works/ok.h) \
+    $(wildcard include/config/x86/intel/usercopy.h) \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/uaccess_32.h \
+    $(wildcard include/config/debug/strict/user/copy/checks.h) \
+  include/linux/hrtimer.h \
+    $(wildcard include/config/high/res/timers.h) \
+  include/linux/timerqueue.h \
+  include/trace/events/irq.h \
+  include/linux/input.h \
+  include/linux/device.h \
+    $(wildcard include/config/of.h) \
+    $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/devtmpfs.h) \
+    $(wildcard include/config/sysfs/deprecated.h) \
+  include/linux/klist.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/device.h \
     $(wildcard include/config/dmar.h) \
     $(wildcard include/config/amd/iommu.h) \
   include/linux/pm_wakeup.h \
-  include/linux/io.h \
-    $(wildcard include/config/has/ioport.h) \
+  include/linux/fs.h \
+    $(wildcard include/config/quota.h) \
+    $(wildcard include/config/fsnotify.h) \
+    $(wildcard include/config/ima.h) \
+    $(wildcard include/config/security.h) \
+    $(wildcard include/config/fs/posix/acl.h) \
+    $(wildcard include/config/epoll.h) \
+    $(wildcard include/config/debug/writecount.h) \
+    $(wildcard include/config/file/locking.h) \
+    $(wildcard include/config/auditsyscall.h) \
+    $(wildcard include/config/block.h) \
+    $(wildcard include/config/fs/xip.h) \
+    $(wildcard include/config/migration.h) \
+  include/linux/limits.h \
+  include/linux/blk_types.h \
+    $(wildcard include/config/blk/dev/integrity.h) \
+  include/linux/kdev_t.h \
+  include/linux/dcache.h \
+  include/linux/rculist.h \
+  include/linux/rculist_bl.h \
+  include/linux/list_bl.h \
+  include/linux/path.h \
+  include/linux/radix-tree.h \
+  include/linux/pid.h \
+  include/linux/capability.h \
+  include/linux/semaphore.h \
+  include/linux/fiemap.h \
+  include/linux/quota.h \
+    $(wildcard include/config/quota/netlink/interface.h) \
+  include/linux/percpu_counter.h \
+  include/linux/dqblk_xfs.h \
+  include/linux/dqblk_v1.h \
+  include/linux/dqblk_v2.h \
+  include/linux/dqblk_qtree.h \
+  include/linux/nfs_fs_i.h \
+  include/linux/nfs.h \
+  include/linux/sunrpc/msg_prot.h \
+  include/linux/inet.h \
+  include/linux/fcntl.h \
+  /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/fcntl.h \
+  include/asm-generic/fcntl.h \
+  include/linux/mod_devicetable.h \
+  include/linux/serio.h \
   /usr/src/linux-headers-2.6.38-10-generic/arch/x86/include/asm/io.h \
     $(wildcard include/config/xen.h) \
   include/xen/xen.h \
     $(wildcard include/config/xen/dom0.h) \
   include/asm-generic/iomap.h \
   include/linux/vmalloc.h \
-  include/linux/irqreturn.h \
+  include/linux/platform_device.h \
+  include/linux/pci.h \
+    $(wildcard include/config/pci/iov.h) \
+    $(wildcard include/config/pcieaspm.h) \
+    $(wildcard include/config/pci/msi.h) \
+    $(wildcard include/config/pci.h) \
+    $(wildcard include/config/pcieportbus.h) \
+    $(wildcard include/config/pcieaer.h) \
+    $(wildcard include/config/pcie/ecrc.h) \
+    $(wildcard include/config/ht/irq.h) \
+    $(wildcard include/config/pci/domains.h) \
+    $(wildcard include/config/pci/quirks.h) \
+    $(wildcard include/config/hotplug/pci.h) \
+  include/linux/pci_regs.h \
+  include/linux/io.h \
+    $(wildcard include/config/has/ioport.h) \
   include/linux/pci_ids.h \
   include/linux/pci-dma.h \
   include/linux/dmapool.h \
@@ -584,22 +632,9 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/pageflags/extended.h) \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/swap.h) \
-    $(wildcard include/config/s390.h) \
   include/linux/huge_mm.h \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
-  include/linux/slab.h \
-    $(wildcard include/config/slab/debug.h) \
-    $(wildcard include/config/failslab.h) \
-    $(wildcard include/config/slub.h) \
-    $(wildcard include/config/slob.h) \
-    $(wildcard include/config/debug/slab.h) \
-    $(wildcard include/config/slab.h) \
-  include/linux/slub_def.h \
-    $(wildcard include/config/slub/stats.h) \
-    $(wildcard include/config/slub/debug.h) \
-  include/linux/kmemleak.h \
-    $(wildcard include/config/debug/kmemleak.h) \
   include/asm-generic/pci-dma-compat.h \
   include/linux/dma-mapping.h \
     $(wildcard include/config/has/dma.h) \
@@ -620,8 +655,6 @@ deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o := \
     $(wildcard include/config/have/generic/dma/coherent.h) \
   include/asm-generic/dma-mapping-common.h \
   include/asm-generic/pci.h \
-  include/linux/input.h \
-  include/linux/platform_device.h \
 
 /home/diego/Estágio/brtablet/src/driver/brtablet-driver.o: $(deps_/home/diego/Estágio/brtablet/src/driver/brtablet-driver.o)
 

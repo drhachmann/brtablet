@@ -1,8 +1,6 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-
-
 #define ENGLISH 1
 #define PORTUGUESE 2
 

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "gui_gtk.h"
+#include "io.h"
 
 int verbose=0;
 
@@ -14,12 +15,12 @@ static void usage(char* cmd)
     fprintf(stderr, "\t--start: manually attach the device driver\n");
     fprintf(stderr, "\t--stop: manually detaches the device driver\n");
     fprintf(stderr, "\t--calib: calibration of tablet\n");
+    fprintf(stderr, "\t-s, --send: send data to driver\n");
 }
 
 int main(int argc, char **argv){
-//int main_common(int argc, char **argv){
 	int i;
-	int init=0, stop=0, calib=0, undo=0;
+	int init=0, stop=0, calib=0, undo=0, send=0;
 	int need_device, use=0;
 	char *device=NULL;
 	if(argc==1){
@@ -44,10 +45,15 @@ int main(int argc, char **argv){
 		else if(strcmp("--calib", argv[i])==0){
 			calib=1;
 		}
+		else if((strcmp("--send", argv[i])==0)||
+					(strcmp("-s", argv[i])==0)){
+			send=1;
+		}
 		else if((strcmp("--verbose", argv[i])==0)||
 					(strcmp("-v", argv[i])==0)){
 			verbose=1;
 		}
+		
 		else{
 			if(!use)usage(argv[0]);
 			use=1;
@@ -86,7 +92,10 @@ int main(int argc, char **argv){
 		mtx_to_driver();
 		uvz_to_driver();
 	}
-
+	if(send==1){//send data(calibration) to driver
+		mtx_to_driver();
+		uvz_to_driver();
+	}
 	
 
 
