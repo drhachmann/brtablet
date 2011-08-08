@@ -96,7 +96,7 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 }
 
 int driver_set_operation(char *drv, int op, int val){
-	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
+	int sim_fd = open(PATH_SYSFS_OPERATION, O_RDWR);
 	char buff[50];
 	int s = sprintf(buff,"%d %d", op, val);
 	write(sim_fd, buff, s);
@@ -117,7 +117,7 @@ int mtx_to_driver(){
 	}
 	int ini=0;
 	memset(buff, ' ', sizeof(buff));
-	for(i=0; i<(N_COLUMN-1)*(N_ROW)*2; i++){
+	for(i=0; i<(N_COLUMN-1)*(N_ROW-1)*2; i++){
 		for(j=0; j<3; j++){
 			for(w=0; w<3; w++){
 				if(fscanf(fp, "%d", &temp)<1){
@@ -219,7 +219,8 @@ static void file_swap(char *src1, char *src2){
 	remove(name_tmp);
 }
 
-//int main(void){
-//	uvz_to_driver();
-//}
+int main3(void){
+	uvz_to_driver();
+	mtx_to_driver();
+}
 

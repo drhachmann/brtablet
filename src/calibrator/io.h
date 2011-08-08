@@ -6,13 +6,15 @@
 #define OP_POINT 2
 
 /*Data from user to driver*/
-#define PATH_SYSFS_DATA "/sys/devices/platform/vms/data_store"
+#define PATH_SYSFS_DATA "/sys/devices/platform/brtablet/data"
 
 /*Operation from user to driver*/
-#define PATH_SYSFS_OPERATION "/sys/devices/platform/vms/operation_store"
+#define PATH_SYSFS_OPERATION "/sys/devices/platform/brtablet/operation"
 
 /*Current point from driver*/
-#define PATH_SYSFS_POINT "/sys/devices/platform/vms/point"
+#define PATH_SYSFS_POINT "/sys/devices/platform/brtablet/point"
+
+#define PATH_FILE_DEVICE "/etc/brtablet/device"
 
 /*Coeficients matrix tranformation file*/
 #define PATH_FILE_MTX "/etc/brtablet/coef"

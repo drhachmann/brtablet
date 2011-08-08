@@ -429,7 +429,7 @@ int inputattach(int argc, char **argv){
 	unsigned long devt;
 	int ldisc;
 	struct input_types *type = NULL;
-	const char *device = NULL;
+	char *device = NULL;
 	int daemon_mode = 0;
 	int need_device = 0;
 	unsigned long id, extra;
@@ -559,7 +559,7 @@ int inputattach(int argc, char **argv){
 int main(int argc, char **argv){
 
 	
-	char device[100];
+	/*char device[100];
 
 	//set device
 	if(argc==2 && argv[1][0]=='/'){
@@ -581,8 +581,9 @@ int main(int argc, char **argv){
 		}
 		fscanf(fp, "%s", device);
 		fclose(fp);
-	}
+	}*/
 		
+	
 	char **arg = (char **)malloc(sizeof(char *)*3);
 	int i;
 	for(i=0; i<3; i++)
@@ -590,12 +591,14 @@ int main(int argc, char **argv){
 	
 	strcpy(arg[0], "inputattach");
 	strcpy(arg[1], "--brtablet");
-	if(device!=NULL){
+	strcpy(arg[2], argv[1]);
+	inputattach(3, arg);
+	/*if(device!=NULL){
 		strcpy(arg[2], device);
 		inputattach(3, arg);
 	}else{
 		inputattach(2, arg);
-	}
+	}*/
 	
 	for(i=0; i<3; i++)
 		free(arg[i]);

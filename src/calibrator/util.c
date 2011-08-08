@@ -39,6 +39,7 @@ int handle_error_bad_file(char *path){
 		printf("Error: Bad File %s\n", path);
 	else if(IDIOM==PORTUGUESE)
 		printf("Erro: Arquivo incorreto : %s \n", path);
+	printf("%s\n\n",(char*)strerror(errno));
 	puts("");
 	exit(-1);
 }

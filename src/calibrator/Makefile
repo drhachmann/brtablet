@@ -51,7 +51,8 @@ am_brtablet_calibrator_OBJECTS =  \
 	brtablet_calibrator-util.$(OBJEXT) \
 	brtablet_calibrator-main_common.$(OBJEXT) \
 	brtablet_calibrator-gui_gtk.$(OBJEXT) \
-	brtablet_calibrator-gui_common.$(OBJEXT)
+	brtablet_calibrator-gui_common.$(OBJEXT) \
+	brtablet_calibrator-inputattach.$(OBJEXT)
 brtablet_calibrator_OBJECTS = $(am_brtablet_calibrator_OBJECTS)
 am__DEPENDENCIES_1 =
 brtablet_calibrator_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -166,7 +167,8 @@ brtablet_calibrator_SOURCES = calibrator_rts.c \
 				util.c\
 				main_common.c\
 				gui_gtk.c\
-				gui_common.c
+				gui_common.c\
+				inputattach.c
 
 brtablet_calibrator_LDADD = $(GTK_LIBS)
 brtablet_calibrator_CFLAGS = $(GTK_CFLAGS)
@@ -254,6 +256,7 @@ distclean-compile:
 include ./$(DEPDIR)/brtablet_calibrator-calibrator_rts.Po
 include ./$(DEPDIR)/brtablet_calibrator-gui_common.Po
 include ./$(DEPDIR)/brtablet_calibrator-gui_gtk.Po
+include ./$(DEPDIR)/brtablet_calibrator-inputattach.Po
 include ./$(DEPDIR)/brtablet_calibrator-io.Po
 include ./$(DEPDIR)/brtablet_calibrator-main_common.Po
 include ./$(DEPDIR)/brtablet_calibrator-util.Po
@@ -355,6 +358,20 @@ brtablet_calibrator-gui_common.obj: gui_common.c
 #	source='gui_common.c' object='brtablet_calibrator-gui_common.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_calibrator_CFLAGS) $(CFLAGS) -c -o brtablet_calibrator-gui_common.obj `if test -f 'gui_common.c'; then $(CYGPATH_W) 'gui_common.c'; else $(CYGPATH_W) '$(srcdir)/gui_common.c'; fi`
+
+brtablet_calibrator-inputattach.o: inputattach.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_calibrator_CFLAGS) $(CFLAGS) -MT brtablet_calibrator-inputattach.o -MD -MP -MF $(DEPDIR)/brtablet_calibrator-inputattach.Tpo -c -o brtablet_calibrator-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
+	$(am__mv) $(DEPDIR)/brtablet_calibrator-inputattach.Tpo $(DEPDIR)/brtablet_calibrator-inputattach.Po
+#	source='inputattach.c' object='brtablet_calibrator-inputattach.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_calibrator_CFLAGS) $(CFLAGS) -c -o brtablet_calibrator-inputattach.o `test -f 'inputattach.c' || echo '$(srcdir)/'`inputattach.c
+
+brtablet_calibrator-inputattach.obj: inputattach.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_calibrator_CFLAGS) $(CFLAGS) -MT brtablet_calibrator-inputattach.obj -MD -MP -MF $(DEPDIR)/brtablet_calibrator-inputattach.Tpo -c -o brtablet_calibrator-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
+	$(am__mv) $(DEPDIR)/brtablet_calibrator-inputattach.Tpo $(DEPDIR)/brtablet_calibrator-inputattach.Po
+#	source='inputattach.c' object='brtablet_calibrator-inputattach.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(brtablet_calibrator_CFLAGS) $(CFLAGS) -c -o brtablet_calibrator-inputattach.obj `if test -f 'inputattach.c'; then $(CYGPATH_W) 'inputattach.c'; else $(CYGPATH_W) '$(srcdir)/inputattach.c'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
