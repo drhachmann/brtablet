@@ -1,14 +1,17 @@
 KERNELDIR := /lib/modules/`uname -r`/build
 
+obj-m := brtablet-driver.o
+
 all:
 	$(MAKE) -C $(KERNELDIR) M=`pwd` modules
 
 install: 
-	$(MAKE) -C $(KERNELDIR) M=`pwd` modules_install
-	depmod -a
-	modprobe brtablet-driver
+#	$(MAKE) -C $(KERNELDIR) M=`pwd` modules_install
+	cp brtablet-driver.ko $(KERNELDIR)/drivers/input/
+	depmod $(KERNELDIR)/drivers/input/brtablet-driver.ko
+#	modprobe brtablet-driver
 clean:
-	$(MAKE) -C $(KERNELDIR) M=`pwd` clean
+	$(MAKE)  -C $(KERNELDIR) M=`pwd` clean
 	
 uninstall:
 

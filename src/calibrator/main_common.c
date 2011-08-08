@@ -62,6 +62,14 @@ int main(int argc, char **argv){
 				exit(-1);
 			}
 			fscanf(fp, "%s", device_name);
+		}else{//grava o nome do dispositivo
+			FILE *fp = fopen(PATH_FILE_DEVICE, "w");
+			if(fp==NULL){
+				fprintf("%s %s\n\n",PATH_FILE_DEVICE,(char*)strerror(errno));
+				exit(-1);
+			}
+			fprintf(fp, "%s", device_name);
+			fclose(fp);		
 		}
 	/*	char **arg = (char **)malloc(sizeof(char *)*3);
 		int i;
@@ -85,15 +93,15 @@ int main(int argc, char **argv){
 		//verifica se arquivos foram criados
 
 		if(access(PATH_SYSFS_DATA, W_OK)!=0){
-			printf("%s\n\n",(char*)strerror(errno));
+			printf("%s %s\n\n",PATH_SYSFS_DATA,(char*)strerror(errno));
 			exit(-1);
 		}
 		if(access(PATH_SYSFS_OPERATION, W_OK)!=0){
-			printf("%s\n\n",(char*)strerror(errno));
+			printf("%s %s\n\n",PATH_SYSFS_OPERATION,(char*)strerror(errno));
 			exit(-1);
 		}
 		if(access(PATH_SYSFS_POINT, R_OK)!=0){
-			printf("%s\n\n",(char*)strerror(errno));
+			printf("%s %s\n\n",PATH_SYSFS_POINT,(char*)strerror(errno));
 			exit(-1);
 		}
 
@@ -117,11 +125,8 @@ int main(int argc, char **argv){
 
 	}
 	if(stop==1){
-<<<<<<< HEAD
 		system("modprobe -r brtablet-driver");
-=======
 		printf("STOP");
->>>>>>> a4f4dd425a838954a47fe9418349be445ffb9bce
 	}
 
 	if(calib==1){

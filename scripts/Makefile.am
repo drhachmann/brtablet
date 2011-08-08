@@ -1,8 +1,8 @@
-boot_SCRIPTS = brtablet-init.sh
-bootdir = /etc/init.d
+#boot_SCRIPTS = brtablet-init.sh
+#bootdir = /etc/init.d
 
 install-post:
-	update-rc.d brtablet-init.sh defaults 10
+#	update-rc.d brtablet-init.sh defaults 10
 
 uninstall-local:
-	update-rc.d -f brtablet-init.sh remove
+#	update-rc.d -f brtablet-init.sh remove
