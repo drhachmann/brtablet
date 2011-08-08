@@ -117,7 +117,11 @@ int main(int argc, char **argv){
 
 	}
 	if(stop==1){
+<<<<<<< HEAD
 		system("modprobe -r brtablet-driver");
+=======
+		printf("STOP");
+>>>>>>> a4f4dd425a838954a47fe9418349be445ffb9bce
 	}
 
 	if(calib==1){
