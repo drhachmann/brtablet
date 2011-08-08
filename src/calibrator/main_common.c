@@ -84,7 +84,7 @@ int main(int argc, char **argv){
 		free(arg);
 	}
 	if(stop==1){
-
+		printf("STOP");
 	}
 
 	if(calib==1){
