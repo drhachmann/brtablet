@@ -125,12 +125,12 @@ DIST_ARCHIVES = $(distdir).tar.gz
 GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run tar
-AUTOCONF = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run automake-1.11
-AWK = gawk
+ACLOCAL = ${SHELL} /home/diego/Estágio/brtablet/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/diego/Estágio/brtablet/missing --run tar
+AUTOCONF = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/diego/Estágio/brtablet/missing --run automake-1.11
+AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -145,8 +145,8 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 GREP = /bin/grep
-GTK_CFLAGS = -pthread -D_REENTRANT -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12  
-GTK_LIBS = -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+GTK_CFLAGS = -pthread -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pixman-1  
+GTK_LIBS = -pthread -L/usr/lib/i386-linux-gnu -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -156,7 +156,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/diego/Estágio/brtablet/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = hello
@@ -168,14 +168,16 @@ PACKAGE_URL =
 PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/diego/2011/Estágio/GIT2/brtablet
-abs_srcdir = /home/diego/2011/Estágio/GIT2/brtablet
-abs_top_builddir = /home/diego/2011/Estágio/GIT2/brtablet
-abs_top_srcdir = /home/diego/2011/Estágio/GIT2/brtablet
+abs_builddir = /home/diego/Estágio/brtablet
+abs_srcdir = /home/diego/Estágio/brtablet
+abs_top_builddir = /home/diego/Estágio/brtablet
+abs_top_srcdir = /home/diego/Estágio/brtablet
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -194,7 +196,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/install-sh
+install_sh = ${SHELL} /home/diego/Estágio/brtablet/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -610,7 +612,6 @@ distcleancheck: distclean
 check-am: all-am
 check: check-recursive
 all-am: Makefile $(DATA) config.h
-installdirs: installdirs-recursive
 installdirs-am:
 	for dir in "$(DESTDIR)$(docdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -737,8 +738,11 @@ uninstall-am: uninstall-dist_docDATA uninstall-local
 #bin_DIR = /home/diego
 #configdir = /home/diego
 
+installdirs:
+	echo "install" > /etc/brtablet/installdirs
+
 install-post:
-	echo "install" > /etc/brtablet/install
+	echo "install4" > /etc/brtablet/install
 #	@if test -x /usr/sbin/update-rc.d; then \
 #		echo "/usr/sbin/update-rc.d default"; \
 #		mkdir -p /etc/brtablet

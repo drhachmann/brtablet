@@ -8,6 +8,9 @@ AM_INIT_AUTOMAKE([-Werror foreign])
 AC_CONFIG_SRCDIR([src/attach/attach.c])
 AC_CONFIG_HEADERS([config.h])
 
+PATH_ATTACH=/home/brtablet/attach
+export DEST=/usr/X11R6
+
 # Checks for programs.
 AC_PROG_CC
 

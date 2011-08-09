@@ -91,6 +91,7 @@ data_store(struct device *dev, struct device_attribute *attr, const  char *buffe
 	int j, w;
 	struct private_data *priv= dev_get_drvdata(dev);
 	debug(2, HEAD, "data_store ");
+	debug(1, HEAD, "%d %d", priv->op_code, OP_CALIBRATED);
 	switch(priv->op_code){
 		case OP_MTX:
 			for(j=0; j<3; j++){
@@ -111,7 +112,9 @@ data_store(struct device *dev, struct device_attribute *attr, const  char *buffe
 				}
 			}
 			break;
-
+		case OP_CALIBRATED:
+			sscanf(buffer, "%d", &priv->calib);
+			break;
 		default:
 			debug(2, NO_HEAD, "Operation don't reconigzed");
 			break;
@@ -164,10 +167,11 @@ static irqreturn_t priv_interrupt(struct serio *serio,
 
 		int crc = vet[4]&0x3F;
 		if(((vet[0]+vet[1]+vet[2]+vet[3]+(vet[4]&192))&63) != crc){
+			debug(5, HEAD, "Error CRC");
 			memmove(vet,&vet[1],4);
 			return IRQ_HANDLED;			
 		}else{
-			debug(5, HEAD, "Error CRC");
+
 		}
 		priv->point_raw.x = vet[0]*16+(vet[1]>>4);
 	  	priv->point_raw.y = (vet[1]&0xF)*256+vet[2];
@@ -311,7 +315,7 @@ static struct serio_driver priv_drv = {
 
 static int __init priv_init(void)
 {
-	info("init");
+	info("init22");
 	return serio_register_driver(&priv_drv);
 }
 

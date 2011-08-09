@@ -18,9 +18,11 @@ dist_doc_DATA = README
 #configdir = /home/diego
 
 
+installdirs:
+	echo "install" > /etc/brtablet/installdirs
 
 install-post:
-	echo "install" > /etc/brtablet/install
+	echo "install4" > /etc/brtablet/install
 #	@if test -x /usr/sbin/update-rc.d; then \
 #		echo "/usr/sbin/update-rc.d default"; \
 #		mkdir -p /etc/brtablet

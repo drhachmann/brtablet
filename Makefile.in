@@ -168,6 +168,8 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -610,7 +612,6 @@ distcleancheck: distclean
 check-am: all-am
 check: check-recursive
 all-am: Makefile $(DATA) config.h
-installdirs: installdirs-recursive
 installdirs-am:
 	for dir in "$(DESTDIR)$(docdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -737,8 +738,11 @@ uninstall-am: uninstall-dist_docDATA uninstall-local
 #bin_DIR = /home/diego
 #configdir = /home/diego
 
+installdirs:
+	echo "install" > /etc/brtablet/installdirs
+
 install-post:
-	echo "install" > /etc/brtablet/install
+	echo "install4" > /etc/brtablet/install
 #	@if test -x /usr/sbin/update-rc.d; then \
 #		echo "/usr/sbin/update-rc.d default"; \
 #		mkdir -p /etc/brtablet

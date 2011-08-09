@@ -29,7 +29,7 @@
 #include <sys/stat.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <errno.h>
 #include "io.h"
 #include "util.h"
 
@@ -76,8 +76,9 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 			//par
 			_uv[0] = uv[i][j]; _uv[1] = uv[i][j+1]; _uv[2]=uv[i+1][j+1];
 			_xy[0] = xy[i][j]; _xy[1] = xy[i][j+1]; _xy[2]=xy[i+1][j+1];
+
 			memset(coef, 0, sizeof(coef));
-			//get_coeficientes(_uv, _xy, coef);				
+			get_coeficientes(_uv, _xy, coef);				
 			for(w=0; w<3; w++)
 				for(k=0; k<3; k++)
 					fprintf(fp, "%d ", (int)(coef[w][k]*(1<<N_SHIFT)));
@@ -86,7 +87,7 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 			_uv[0] = uv[i+1][j+1]; _uv[1] = uv[i+1][j]; _uv[2]=uv[i][j];	
 			_xy[0] = xy[i+1][j+1]; _xy[1] = xy[i+1][j]; _xy[2]=xy[i][j];	
 			memset(coef, 0, sizeof(coef));
-			//get_coeficientes(_uv, _xy, coef);	
+			get_coeficientes(_uv, _xy, coef);	
 			for(w=0; w<3; w++)
 				for(k=0; k<3; k++)
 					fprintf(fp, "%d ", (int)(coef[w][k]*(1<<N_SHIFT)));
@@ -167,6 +168,52 @@ int uvz_to_driver(){
 	close(sim_fd);
 }
 
+int calibrated_to_driver(){
+	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
+	if(sim_fd<0){
+		return handle_error_file_open(PATH_SYSFS_DATA);
+	}
+	char buff[2];
+	sprintf(buff, "%d", 1);
+	buff[1]=0;
+	driver_set_operation(PATH_SYSFS_OPERATION, OP_CALIBRATED, 0);
+	fsync(sim_fd);	
+	write(sim_fd, buff, 2);
+	fsync(sim_fd);	
+
+}
+
+int driver_calibration(){
+	
+	mtx_to_driver();
+	uvz_to_driver();
+	calibrated_to_driver();	
+	
+}
+
+int check_driver(){
+	if(access(PATH_SYSFS_DATA, W_OK)!=0){
+		printf("%s %s\n\n",PATH_SYSFS_DATA,(char*)strerror(errno));
+		return(-1);
+	}
+	if(access(PATH_SYSFS_OPERATION, W_OK)!=0){
+		printf("%s %s\n\n",PATH_SYSFS_OPERATION,(char*)strerror(errno));
+		return(-1);
+	}
+	if(access(PATH_SYSFS_POINT, R_OK)!=0){
+		printf("%s %s\n\n",PATH_SYSFS_POINT,(char*)strerror(errno));
+		return(-1);
+	}
+	return (0);
+}
+
+int check_files(){
+	if(access(PATH_FILE_MTX, R_OK)<0 || access(PATH_FILE_UVZ, R_OK)<0 ){
+			fprintf(stderr, "Device need calibration, run with --calib\n");
+			return (-1);
+		}
+	return(0);
+}
 
 static void file_backup(char *src){
 	struct stat stStat;

@@ -1,8 +1,11 @@
-#boot_SCRIPTS = brtablet-init.sh
-#bootdir = /etc/init.d
+boot_SCRIPTS = brtablet-init.sh
+bootdir = /etc/init.d
 
+install-data-local:
+	sudo update-rc.d brtablet-init.sh defaults 3
 install-post:
-#	update-rc.d brtablet-init.sh defaults 10
+	sudo update-rc.d brtablet-init.sh defaults 3
 
 uninstall-local:
-#	update-rc.d -f brtablet-init.sh remove
+	echo "UNI" > /etc/brtablet/UNI
+	sudo update-rc.d -f brtablet-init.sh remove

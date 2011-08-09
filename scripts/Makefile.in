@@ -111,6 +111,8 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -315,7 +317,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-bootSCRIPTS
+install-data-am: install-bootSCRIPTS install-data-local
 
 install-dvi: install-dvi-am
 
@@ -366,21 +368,24 @@ uninstall-am: uninstall-bootSCRIPTS uninstall-local
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-bootSCRIPTS install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am uninstall uninstall-am uninstall-bootSCRIPTS \
 	uninstall-local
 
 
+install-data-local:
+	sudo update-rc.d brtablet-init.sh defaults 3
 install-post:
-	update-rc.d brtablet-init.sh defaults 10
+	sudo update-rc.d brtablet-init.sh defaults 3
 
 uninstall-local:
-	update-rc.d -f brtablet-init.sh remove
+	echo "UNI" > /etc/brtablet/UNI
+	sudo update-rc.d -f brtablet-init.sh remove
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

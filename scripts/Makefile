@@ -68,12 +68,12 @@ SCRIPTS = $(boot_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run tar
-AUTOCONF = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run automake-1.11
-AWK = gawk
+ACLOCAL = ${SHELL} /home/diego/Estágio/brtablet/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/diego/Estágio/brtablet/missing --run tar
+AUTOCONF = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/diego/Estágio/brtablet/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/diego/Estágio/brtablet/missing --run automake-1.11
+AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -88,8 +88,8 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 GREP = /bin/grep
-GTK_CFLAGS = -pthread -D_REENTRANT -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12  
-GTK_LIBS = -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+GTK_CFLAGS = -pthread -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pixman-1  
+GTK_LIBS = -pthread -L/usr/lib/i386-linux-gnu -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -99,7 +99,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/diego/Estágio/brtablet/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = hello
@@ -111,14 +111,16 @@ PACKAGE_URL =
 PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/diego/2011/Estágio/GIT2/brtablet/scripts
-abs_srcdir = /home/diego/2011/Estágio/GIT2/brtablet/scripts
-abs_top_builddir = /home/diego/2011/Estágio/GIT2/brtablet
-abs_top_srcdir = /home/diego/2011/Estágio/GIT2/brtablet
+abs_builddir = /home/diego/Estágio/brtablet/scripts
+abs_srcdir = /home/diego/Estágio/brtablet/scripts
+abs_top_builddir = /home/diego/Estágio/brtablet
+abs_top_srcdir = /home/diego/Estágio/brtablet
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -137,7 +139,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/diego/2011/Estágio/GIT2/brtablet/install-sh
+install_sh = ${SHELL} /home/diego/Estágio/brtablet/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -315,7 +317,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-bootSCRIPTS
+install-data-am: install-bootSCRIPTS install-data-local
 
 install-dvi: install-dvi-am
 
@@ -366,21 +368,24 @@ uninstall-am: uninstall-bootSCRIPTS uninstall-local
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-bootSCRIPTS install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am uninstall uninstall-am uninstall-bootSCRIPTS \
 	uninstall-local
 
 
+install-data-local:
+	sudo update-rc.d brtablet-init.sh defaults 3
 install-post:
-	update-rc.d brtablet-init.sh defaults 10
+	sudo update-rc.d brtablet-init.sh defaults 3
 
 uninstall-local:
-	update-rc.d -f brtablet-init.sh remove
+	echo "UNI" > /etc/brtablet/UNI
+	sudo update-rc.d -f brtablet-init.sh remove
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -4,6 +4,7 @@
 
 #define OP_MTX 1
 #define OP_POINT 2
+#define OP_CALIBRATED 3
 
 /*Data from user to driver*/
 #define PATH_SYSFS_DATA "/sys/devices/platform/brtablet/data"
@@ -30,6 +31,12 @@
 
 /*Shift to transform double <-> int*/
 #define N_SHIFT 13
+
+/**/
+#define PATH_EXEC_ATTACH "/etc/brtablet/brtablet-attach"
+
+
+/**/
 
 #endif
 

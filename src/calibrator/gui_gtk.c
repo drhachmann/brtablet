@@ -33,7 +33,7 @@
 #include "io.h"
 #include "gui_gtk.h"
 
-void get_device_current_coord(Point *uv, GuiInfoPtr GuiInfo);
+
 
 void GuiInfo_init(GuiInfoPtr gui_info){
 	
@@ -126,8 +126,51 @@ static CommonEvent get_key_common_event(GdkEventKey *event){
 
 static gboolean on_key_press (GtkWidget *widget, GdkEventKey *event, gpointer user_data){
 	GuiInfoPtr gui_info = (GuiInfoPtr)user_data;
-	CommonEvent event_c= get_key_common_event(event);
-	key_common_handle(gui_info, event_c);
+	//CommonEvent event_c= get_key_common_event(event);
+	//key_common_handle(gui_info, event_c);
+	printf("KEU PRESS");
+	Point uv;
+	switch (event->keyval){
+
+		case GDK_Up:gui_info->current_Y--;break;
+		
+		case GDK_Down:gui_info->current_Y++;break;
+		
+		case GDK_Left:gui_info->current_X--;break;
+		
+		case GDK_Right:gui_info->current_X++;break;
+		
+		case GDK_Return: //enter
+				get_device_current_coord(&uv);
+				printf("%d %d\n", uv.x, uv.y);
+				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].x = uv.x;
+				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].y = uv.y;
+				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].z = uv.z;
+				gui_info->recorded[gui_info->current_X][gui_info->current_Y] = RECORDED;
+				break;	
+		case GDK_Escape://esc
+				gtk_main_quit();
+				break;
+
+		case GDK_w:	
+				write_calib_mtx(gui_info->point_uv, gui_info->point_xy);
+				write_calib_uvz(gui_info->point_uv);
+				puts("CALIB");
+				driver_calibration();		
+				gtk_main_quit();
+				break;
+	}	
+	if(gui_info->current_X==N_COLUMN)
+			gui_info->current_X=0;
+	else if(gui_info->current_X==-1)
+			gui_info->current_X=N_COLUMN-1;
+
+	if(gui_info->current_Y==N_ROW)
+			gui_info->current_Y=0;
+	if(gui_info->current_Y==-1)
+		gui_info->current_Y=N_ROW-1;
+
+
 	gtk_widget_queue_draw(widget);
 	return FALSE; /* propogate event */
 }

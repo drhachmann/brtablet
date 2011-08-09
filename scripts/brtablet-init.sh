@@ -2,9 +2,7 @@
 
 case "$1" in
   start)
-#	 modprobe brtablet-driver
-#	 echo "TESTE"
-    brtablet-calibrator --start
+    sudo brtablet-calibrator --start
     ;;
   stop)
 #    log_begin_msg "Disabling power management..."
