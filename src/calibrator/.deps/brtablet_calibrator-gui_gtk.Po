@@ -474,8 +474,10 @@ brtablet_calibrator-gui_gtk.o: gui_gtk.c /usr/include/string.h \
  /usr/include/gtk-2.0/gtk/gtkoldeditable.h \
  /usr/include/gtk-2.0/gtk/gtkoptionmenu.h \
  /usr/include/gtk-2.0/gtk/gtkpreview.h \
- /usr/include/gtk-2.0/gtk/gtktipsquery.h gui_common.h util.h io.h \
- gui_gtk.h
+ /usr/include/gtk-2.0/gtk/gtktipsquery.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/i386-linux-gnu/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h gui_common.h util.h io.h gui_gtk.h
 
 /usr/include/string.h:
 
@@ -1598,6 +1600,18 @@ brtablet_calibrator-gui_gtk.o: gui_gtk.c /usr/include/string.h \
 /usr/include/gtk-2.0/gtk/gtkpreview.h:
 
 /usr/include/gtk-2.0/gtk/gtktipsquery.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/i386-linux-gnu/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
 
 gui_common.h:
 

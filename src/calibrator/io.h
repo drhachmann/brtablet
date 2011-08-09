@@ -35,6 +35,8 @@
 /**/
 #define PATH_EXEC_ATTACH "/etc/brtablet/brtablet-attach"
 
+#define PATH_LOCK_ATTACH "/etc/brtablet/lock_attack"
+
 
 /**/
 

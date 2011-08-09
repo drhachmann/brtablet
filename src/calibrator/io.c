@@ -33,6 +33,9 @@
 #include "io.h"
 #include "util.h"
 
+static char *devices[] = {"/dev/ttyS0", "/dev/ttyS1", "/dev/ttyS2", "/dev/ttyS3",
+								      "/dev/ttyS4", "/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyUSB2", NULL};
+
 
 int get_device_current_coord(Point *uv){
 	char buff[100];
@@ -43,7 +46,6 @@ int get_device_current_coord(Point *uv){
 	}
 	read(sim_fd, buff, sizeof(buff));
 	sscanf(buff, "%d %d %d", &uv->x, &uv->y, &uv->z);
-	printf("%d %d %d\n", uv->x, uv->y, uv->z);
 	close(sim_fd);
 }
 
@@ -51,8 +53,7 @@ int write_calib_uvz(Point uv[N_ROW][N_COLUMN]){
 	int i, j;
 	FILE *fp = fopen(PATH_FILE_UVZ, "w");
 	if(fp==NULL){
-		handle_error_file_open(PATH_FILE_UVZ);
-		exit (-1);
+		return -1;
 	}
 	for(i=0; i<N_ROW; i++){
 		for(j=0; j< N_COLUMN; j++){
@@ -60,6 +61,7 @@ int write_calib_uvz(Point uv[N_ROW][N_COLUMN]){
 		}
 	}
 	fclose(fp);
+	return(0);
 }
 
 
@@ -69,7 +71,8 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 	Point _uv[3], _xy[3];
 	FILE *fp = fopen(PATH_FILE_MTX, "w");
 	if(fp==NULL){
-		return handle_error_file_open(PATH_FILE_MTX);
+		//return handle_error_file_open(PATH_FILE_MTX);
+		return (-1);
 	}
 	for(i=0; i<N_ROW-1; i++){
 		for(j=0; j<N_COLUMN-1; j++){
@@ -94,6 +97,7 @@ int write_calib_mtx(Point uv[][N_COLUMN], Point xy[][N_COLUMN]){
 		}
 	}
 	fclose(fp);
+	return (0);
 }
 
 int driver_set_operation(char *drv, int op, int val){
@@ -108,13 +112,15 @@ int driver_set_operation(char *drv, int op, int val){
 int mtx_to_driver(){
 	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
 	if(sim_fd<0){
-		return handle_error_file_open(PATH_SYSFS_DATA);
+		//return handle_error_file_open(PATH_SYSFS_DATA);
+		return (-1);
 	}
 	int i, j,  w, temp;
 	char buff[500];
 	FILE *fp = fopen(PATH_FILE_MTX, "r");
 	if(fp==NULL){
-		return handle_error_file_open(PATH_FILE_MTX);
+		//return handle_error_file_open(PATH_FILE_MTX);
+		return (-1);
 	}
 	int ini=0;
 	memset(buff, ' ', sizeof(buff));
@@ -139,19 +145,20 @@ int mtx_to_driver(){
 	}
 	fclose(fp);
 	close(sim_fd);
+	return(0);
 }
 
 int uvz_to_driver(){
 	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
 	if(sim_fd<0){
-		return handle_error_file_open(PATH_SYSFS_DATA);
+		return -1;
 	}
 
 	char buff[500];
 	memset(buff, ' ', sizeof(buff));
 	FILE *fp = fopen(PATH_FILE_UVZ, "r");
 	if(fp == NULL){
-		return handle_error_file_open(PATH_SYSFS_DATA);
+		return -1;
 	}
 	fseek (fp , 0L , SEEK_END);
 	int fim = ftell(fp);
@@ -166,12 +173,13 @@ int uvz_to_driver(){
 	fsync(sim_fd);	
 	fclose(fp);
 	close(sim_fd);
+	return(0);
 }
 
 int calibrated_to_driver(){
 	int sim_fd = open(PATH_SYSFS_DATA, O_RDWR);
 	if(sim_fd<0){
-		return handle_error_file_open(PATH_SYSFS_DATA);
+		return (-1);
 	}
 	char buff[2];
 	sprintf(buff, "%d", 1);
@@ -180,28 +188,28 @@ int calibrated_to_driver(){
 	fsync(sim_fd);	
 	write(sim_fd, buff, 2);
 	fsync(sim_fd);	
+	return (0);
 
 }
 
-int driver_calibration(){
-	
-	mtx_to_driver();
-	uvz_to_driver();
-	calibrated_to_driver();	
-	
+int files_to_driver(){
+	int retval = 0;
+	retval = mtx_to_driver();
+	if(retval)return retval;
+	retval=uvz_to_driver();
+	if(retval)return retval;
+	retval = calibrated_to_driver();	
+	return retval;
 }
 
 int check_driver(){
 	if(access(PATH_SYSFS_DATA, W_OK)!=0){
-		printf("%s %s\n\n",PATH_SYSFS_DATA,(char*)strerror(errno));
 		return(-1);
 	}
 	if(access(PATH_SYSFS_OPERATION, W_OK)!=0){
-		printf("%s %s\n\n",PATH_SYSFS_OPERATION,(char*)strerror(errno));
 		return(-1);
 	}
 	if(access(PATH_SYSFS_POINT, R_OK)!=0){
-		printf("%s %s\n\n",PATH_SYSFS_POINT,(char*)strerror(errno));
 		return(-1);
 	}
 	return (0);
@@ -209,7 +217,6 @@ int check_driver(){
 
 int check_files(){
 	if(access(PATH_FILE_MTX, R_OK)<0 || access(PATH_FILE_UVZ, R_OK)<0 ){
-			fprintf(stderr, "Device need calibration, run with --calib\n");
 			return (-1);
 		}
 	return(0);
@@ -254,6 +261,56 @@ static void file_move(char *src1, char *dst1){
 	fclose(to);
 }
 
+int detect_device(char *out){
+	char *device;	
+	int i;
+	time_t init_time = time(NULL);
+	int retval = EXIT_SUCCESS;
+	for(i=0;  ;i++){
+		device = devices[i];
+		if(device==NULL){
+			fputc('.', stderr);
+			fflush(stderr);
+			if(time(NULL)-init_time>10){//10 segundos
+				retval = EXIT_FAILURE;
+				break;
+			}
+			i=0;
+			continue;
+		}else{
+			int fd = open(device, O_RDONLY);
+			
+			if(fd==0){
+				printf("FD =0 %s\n", device);
+				continue;
+			}
+			struct timeval tv;
+			fd_set set;
+
+			memset((char *)&tv,0,sizeof(tv)); 
+
+			tv.tv_sec = 0;
+			tv.tv_usec = 100000; /*100ms*/
+			FD_ZERO(&set);
+			FD_SET(fd, &set);
+			int retval = select(fd+1,&set,NULL,NULL,&tv); 
+			if(retval==-1){
+
+			}else if(retval){
+				strcpy(out, device);
+				retval = EXIT_SUCCESS;
+				break;
+				
+			}else{
+				
+			}
+			
+		}
+	}
+	fputc('\n', stderr);
+	return retval;
+}
+
 static void file_swap(char *src1, char *src2){
 	int len1 = strlen(src1);
 	char name_tmp[len1+10];
@@ -265,6 +322,8 @@ static void file_swap(char *src1, char *src2){
 	file_move(name_tmp, src2);
 	remove(name_tmp);
 }
+
+
 
 int main3(void){
 	uvz_to_driver();

@@ -27,7 +27,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <cairo.h>
-
+#include <errno.h>
 #include "gui_common.h"
 #include "util.h"
 #include "io.h"
@@ -128,7 +128,7 @@ static gboolean on_key_press (GtkWidget *widget, GdkEventKey *event, gpointer us
 	GuiInfoPtr gui_info = (GuiInfoPtr)user_data;
 	//CommonEvent event_c= get_key_common_event(event);
 	//key_common_handle(gui_info, event_c);
-	printf("KEU PRESS");
+	int retval;
 	Point uv;
 	switch (event->keyval){
 
@@ -142,7 +142,7 @@ static gboolean on_key_press (GtkWidget *widget, GdkEventKey *event, gpointer us
 		
 		case GDK_Return: //enter
 				get_device_current_coord(&uv);
-				printf("%d %d\n", uv.x, uv.y);
+
 				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].x = uv.x;
 				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].y = uv.y;
 				gui_info->point_uv[gui_info->current_X][gui_info->current_Y].z = uv.z;
@@ -153,10 +153,35 @@ static gboolean on_key_press (GtkWidget *widget, GdkEventKey *event, gpointer us
 				break;
 
 		case GDK_w:	
-				write_calib_mtx(gui_info->point_uv, gui_info->point_xy);
-				write_calib_uvz(gui_info->point_uv);
-				puts("CALIB");
-				driver_calibration();		
+				retval = EXIT_SUCCESS;
+				if(write_calib_mtx(gui_info->point_uv, gui_info->point_xy)==0){
+					fprintf_color(stderr, COLOR_OK, "Write Calibrate Matrix: OK\n");
+				}else{
+					fprintf_color(stderr, COLOR_ERROR, "Write Calibrate Matrix: FAILED\n");
+					fprintf_color(stderr, COLOR_WARNING, "%s\n",(char*)strerror(errno));
+					retval = EXIT_FAILURE;
+				}
+				if(write_calib_uvz(gui_info->point_uv)==0){
+					fprintf_color(stderr, COLOR_OK, "Write Coordinates UVZ: OK\n");
+				}else{
+					fprintf_color(stderr, COLOR_OK, "Write Coordinates UVZ: FAILED\n");
+					fprintf_color(stderr, COLOR_WARNING, "%s\n",(char*)strerror(errno));
+					retval = EXIT_FAILURE;
+				}
+				
+				
+				if(files_to_driver()==0){
+					fprintf_color(stderr, COLOR_OK, "Files to Driver: OK\n");
+				}else{
+					fprintf_color(stderr, COLOR_ERROR, "Files to Driver: FAILED\n");
+					fprintf_color(stderr, COLOR_WARNING, "%s\n",(char*)strerror(errno));
+					retval = EXIT_FAILURE;
+				}
+				if(retval == EXIT_SUCCESS){
+					msg_color_UPPER(stderr, COLOR_OK, "CALIBRATED DEVICE");
+				}else{
+					msg_color_UPPER(stderr, COLOR_ERROR, "DEVICE IS NOT CALIBRATED");
+				}
 				gtk_main_quit();
 				break;
 	}	

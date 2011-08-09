@@ -54,6 +54,8 @@
 
 #define PATH_FILE_DEVICE "/etc/brtablet/device"
 
+#define PATH_LOCK_ATTACH "/etc/brtablet/lock_attack"
+
 static int readchar(int fd, unsigned char *c, int timeout)
 {
 	struct timeval tv;
@@ -427,6 +429,7 @@ static void show_help(void)
 
 int inputattach(int argc, char **argv){
 	unsigned long devt;
+	
 	int ldisc;
 	struct input_types *type = NULL;
 	char *device = NULL;
@@ -551,7 +554,6 @@ int inputattach(int argc, char **argv){
 	ldisc = 0;
 	ioctl(fd, TIOCSETD, &ldisc);/*ou aki*/
 	close(fd);
-
 	return retval;
 }
 
@@ -582,8 +584,7 @@ int main(int argc, char **argv){
 		fscanf(fp, "%s", device);
 		fclose(fp);
 	}*/
-		
-	
+	char msg[100];
 	char **arg = (char **)malloc(sizeof(char *)*3);
 	int i;
 	for(i=0; i<3; i++)
@@ -592,7 +593,16 @@ int main(int argc, char **argv){
 	strcpy(arg[0], "inputattach");
 	strcpy(arg[1], "--brtablet");
 	strcpy(arg[2], argv[1]);
-	inputattach(3, arg);
+	if(access(PATH_LOCK_ATTACH, R_OK)==0){
+		sprintf(msg, "rm %s", PATH_LOCK_ATTACH);
+		system(msg);
+	}
+	
+	if(inputattach(3, arg)==EXIT_FAILURE){
+		sprintf(msg, "touch %s", PATH_LOCK_ATTACH);
+		system(msg);
+	}
+	
 	/*if(device!=NULL){
 		strcpy(arg[2], device);
 		inputattach(3, arg);

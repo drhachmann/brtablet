@@ -25,6 +25,19 @@
 #include <errno.h>
 #include "util.h"
 
+#define WHITE "\033[01;37m"
+#define LIGHT_BLUE "\033[01;34m"
+#define LIGHT_RED "\033[01;31m"
+#define LIGHT_YELLOW "\033[01;33m"
+
+#define fprintf_color(file, color, format, args...){\
+	fprintf(file, "%s", color);\
+	fprintf (file, format , ##args);\
+	fprintf(file, "%s", WHITE);\
+}
+
+
+
 int handle_error_file_open(char *path){
 	if(IDIOM==ENGLISH)
 		printf("Error: Can't Open %s\n", path);
@@ -33,6 +46,8 @@ int handle_error_file_open(char *path){
 	printf("%s\n\n",(char*)strerror(errno));
 	exit(-1);
 }
+
+
 
 int handle_error_bad_file(char *path){
 	if(IDIOM==ENGLISH)

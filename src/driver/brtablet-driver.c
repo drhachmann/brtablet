@@ -49,6 +49,9 @@
 
 #define DRIVER_DESC	"Serial Tablet Tupiniquim(brTablet) driver"
 
+/*#define DEBUG
+#define DEBUG_LEVEL 5*/
+
 MODULE_AUTHOR("diego_hachmann@hotmail.com");
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
@@ -58,6 +61,7 @@ MODULE_LICENSE("GPL");
 DEVICE_ATTR(data, 0644, NULL, data_store);
 DEVICE_ATTR(operation, 0644, NULL, operation_store);
 DEVICE_ATTR(point, 0644, point_show, NULL);
+
 /* Attribute Descriptor */
 static struct attribute *brtablet_attrs[] = {
 	&dev_attr_data.attr,
@@ -65,11 +69,12 @@ static struct attribute *brtablet_attrs[] = {
 	&dev_attr_point.attr,
   NULL
 };
+
 /* Attribute group */
 static struct attribute_group brtablet_attr_group = {
   .attrs = brtablet_attrs,
 };
-            
+/*export the raw point to the user space*/
 static ssize_t
 point_show(struct device *dev,  struct device_attribute *attr,  char *buffer){
 	struct private_data *priv= dev_get_drvdata(dev);
@@ -77,7 +82,7 @@ point_show(struct device *dev,  struct device_attribute *attr,  char *buffer){
 	buffer[a]='\0';
 	return a+1;
 }
-      
+/*show operation selected at the user space*/
 static ssize_t
 operation_store(struct device *dev, struct device_attribute *attr, const  char *buffer, size_t count){
 	struct private_data *priv= dev_get_drvdata(dev);
@@ -85,7 +90,8 @@ operation_store(struct device *dev, struct device_attribute *attr, const  char *
 	debug(2, HEAD, "operation_store %d %d\n", priv->op_code, priv->op_value);
 	return count;
 }
-      
+
+/*show data send at the user space*/
 static ssize_t
 data_store(struct device *dev, struct device_attribute *attr, const  char *buffer, size_t count){
 	int j, w;
@@ -124,7 +130,7 @@ data_store(struct device *dev, struct device_attribute *attr, const  char *buffe
  	return count;
 }
 
-
+/*calib the raw points;  priv->point_raw to priv->points */
 static void calib(struct private_data *priv){
 	int i, j, pos=0;
 	for(i=0; i<4; i++){
@@ -145,6 +151,7 @@ fim:
 		priv->point_calib.z = priv->point_raw.z;
 }
 
+/*called when data are available at the serial port*/
 static irqreturn_t priv_interrupt(struct serio *serio,
 		unsigned char data, unsigned int flags)
 {
@@ -205,7 +212,6 @@ static irqreturn_t priv_interrupt(struct serio *serio,
  * priv_disconnect() cleans up after we don't want talk
  * to the mouse anymore.
  */
-
 static void priv_disconnect(struct serio *serio)
 {
 	struct private_data *priv = serio_get_drvdata(serio);
@@ -223,7 +229,6 @@ static void priv_disconnect(struct serio *serio)
  * priv_connect() is a callback form the serio module when
  * an unhandled serio port is found.
  */
-//printk(KERN_DEBUG " - baud rate = %d", tty_get_baud_rate(tty));
 static int priv_connect(struct serio *serio, struct serio_driver *drv)
 {
 	struct private_data *priv = NULL;
@@ -289,7 +294,7 @@ static int priv_connect(struct serio *serio, struct serio_driver *drv)
 
 	return err;
 }
-
+/*Microsoft protocol is B115200 baud rate at attach(user space)*/
 static struct serio_device_id priv_serio_ids[] = {
 	{
 		.type	= SERIO_RS232,
@@ -304,7 +309,7 @@ MODULE_DEVICE_TABLE(serio, priv_serio_ids);
 
 static struct serio_driver priv_drv = {
 	.driver		= {
-		.name	= "brTablet",
+		.name	= "brtablet",
 	},
 	.description	= DRIVER_DESC,
 	.id_table	= priv_serio_ids,
@@ -315,7 +320,7 @@ static struct serio_driver priv_drv = {
 
 static int __init priv_init(void)
 {
-	info("init22");
+	info("init");
 	return serio_register_driver(&priv_drv);
 }
 
