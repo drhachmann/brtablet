@@ -6,4 +6,42 @@ Website:    https://github.com/drhachmann/brtablet/wiki
 Source:     https://github.com/drhachmann/brtablet
 Bug:        http://github.com/drhachmann/brtablet/issues
 
+**************************
+*Instruções de instalação*
+**************************
+
+Obtenha os fontes:
+	*Em um terminal, digite:
+		git clone git://github.com/drhachmann/brtablet.git
+	*Ou baixe os fontes em:
+		git://github.com/drhachmann/brtablet.git
+	 e descompacte através do comando tar -xzvf drhachmann-brtablet-***
+	
+Instale o driver:
+	*No diretório raiz brtablet digite os comandos:
+		sudo make
+		sudo make install
+
+Calibre o driver:
+	*Em um terminal, digite:
+		brtablet --calib
+	*Aponte a caneta sobre cada ponto mostrado na tela, e tecle enter.
+	*Use as setas ->, <-, *top e *down para movimentar entre os alvos.
+	*Para confirmar e gravar os dados tecle *enter.
+	*Caso deseje sair em salvar tecle *esc.
+
+Inicie o driver:
+	*Em um terminal, digite:
+		brtablet --init <device> (onde <device> é o nome arquivo do dispositivo, 
+										  como /dev/ttyS0 ou /dev/ttyUSB0)
+			ou
+
+		brtablet --init --detect (movimente a caneta sobre a tela quando solicitado)
+	
+	Nota: Quando o computador for reiniciado, o driver será iniciado automáticamente com
+			último arquivo do dispositivo informado ou detectado.
+	
+Para ajuda, tecle no terminal: brtablet --help
+
+Qualquer dúvida entre em contato através do email: diego_hachmann@hotmail.com
 
