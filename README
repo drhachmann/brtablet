@@ -28,7 +28,7 @@ Calibre o driver:
 	*Aponte a caneta sobre cada ponto mostrado na tela, e tecle enter.
 	*Use as setas ->, <-, *top e *down para movimentar entre os alvos.
 	*Para confirmar e gravar os dados tecle *enter.
-	*Caso deseje sair em salvar tecle *esc.
+	*Caso deseje sair sem salvar tecle *esc.
 
 Inicie o driver:
 	*Em um terminal, digite:
