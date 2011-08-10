@@ -94,9 +94,9 @@ int br_msg(int msg, char *format, ...){
 
 void br_perror(char *str){
 	if(str==NULL)
-		fprintf_color(stderr, COLOR_PERROR, "%s", (char*)strerror(errno));
+		fprintf_color(stderr, COLOR_PERROR, "%s\n", (char*)strerror(errno));
 	else
-		fprintf_color(stderr, COLOR_PERROR, "%s: %s",str, (char*)strerror(errno));
+		fprintf_color(stderr, COLOR_PERROR, "%s: %s\n",str, (char*)strerror(errno));
 }
 
 int handle_error_file_open(char *path){

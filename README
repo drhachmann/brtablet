@@ -19,6 +19,7 @@ Obtenha os fontes:
 	
 Instale o driver:
 	*No diretório raiz brtablet digite os comandos:
+		./configure
 		sudo make
 		sudo make install
 

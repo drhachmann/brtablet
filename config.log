@@ -259,7 +259,7 @@ configure:4284: $? = 0
 configure:4294: result: yes
 configure:4318: checking for clock_gettime
 configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccIi4ohw.o: In function `main':
+/tmp/ccX0s0IX.o: In function `main':
 /home/diego/Estágio/brtablet/conftest.c:63: undefined reference to `clock_gettime'
 collect2: ld returned 1 exit status
 configure:4318: $? = 1
