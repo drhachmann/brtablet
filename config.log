@@ -122,257 +122,30 @@ configure:3703: result: /usr/bin/pkg-config
 configure:3728: checking pkg-config is at least version 0.9.0
 configure:3731: result: yes
 configure:3741: checking for GTK
-configure:3748: $PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12"
-configure:3751: $? = 0
-configure:3764: $PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12"
-configure:3767: $? = 0
-configure:3824: result: yes
-configure:3839: checking how to run the C preprocessor
-configure:3870: gcc -E  conftest.c
-configure:3870: $? = 0
-configure:3884: gcc -E  conftest.c
-conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
-compilation terminated.
-configure:3884: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "hello"
-| #define PACKAGE_TARNAME "hello"
-| #define PACKAGE_VERSION "0.1"
-| #define PACKAGE_STRING "hello 0.1"
-| #define PACKAGE_BUGREPORT "diego_hachmann@hotmail.com"
-| #define PACKAGE_URL ""
-| #define PACKAGE "hello"
-| #define VERSION "0.1"
-| /* end confdefs.h.  */
-| #include <ac_nonexistent.h>
-configure:3909: result: gcc -E
-configure:3929: gcc -E  conftest.c
-configure:3929: $? = 0
-configure:3943: gcc -E  conftest.c
-conftest.c:11:28: fatal error: ac_nonexistent.h: No such file or directory
-compilation terminated.
-configure:3943: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "hello"
-| #define PACKAGE_TARNAME "hello"
-| #define PACKAGE_VERSION "0.1"
-| #define PACKAGE_STRING "hello 0.1"
-| #define PACKAGE_BUGREPORT "diego_hachmann@hotmail.com"
-| #define PACKAGE_URL ""
-| #define PACKAGE "hello"
-| #define VERSION "0.1"
-| /* end confdefs.h.  */
-| #include <ac_nonexistent.h>
-configure:3972: checking for grep that handles long lines and -e
-configure:4030: result: /bin/grep
-configure:4035: checking for egrep
-configure:4097: result: /bin/grep -E
-configure:4102: checking for ANSI C header files
-configure:4122: gcc -c -g -O2  conftest.c >&5
-configure:4122: $? = 0
-configure:4195: gcc -o conftest -g -O2   conftest.c  >&5
-configure:4195: $? = 0
-configure:4195: ./conftest
-configure:4195: $? = 0
-configure:4206: result: yes
-configure:4219: checking for sys/types.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for sys/stat.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for stdlib.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for string.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for memory.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for strings.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for inttypes.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for stdint.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4219: checking for unistd.h
-configure:4219: gcc -c -g -O2  conftest.c >&5
-configure:4219: $? = 0
-configure:4219: result: yes
-configure:4234: checking fcntl.h usability
-configure:4234: gcc -c -g -O2  conftest.c >&5
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking fcntl.h presence
-configure:4234: gcc -E  conftest.c
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking for fcntl.h
-configure:4234: result: yes
-configure:4234: checking for stdlib.h
-configure:4234: result: yes
-configure:4234: checking for string.h
-configure:4234: result: yes
-configure:4234: checking sys/time.h usability
-configure:4234: gcc -c -g -O2  conftest.c >&5
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking sys/time.h presence
-configure:4234: gcc -E  conftest.c
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking for sys/time.h
-configure:4234: result: yes
-configure:4234: checking termios.h usability
-configure:4234: gcc -c -g -O2  conftest.c >&5
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking termios.h presence
-configure:4234: gcc -E  conftest.c
-configure:4234: $? = 0
-configure:4234: result: yes
-configure:4234: checking for termios.h
-configure:4234: result: yes
-configure:4234: checking for unistd.h
-configure:4234: result: yes
-configure:4250: checking for stdlib.h
-configure:4250: result: yes
-configure:4260: checking for GNU libc compatible malloc
-configure:4284: gcc -o conftest -g -O2   conftest.c  >&5
-configure:4284: $? = 0
-configure:4284: ./conftest
-configure:4284: $? = 0
-configure:4294: result: yes
-configure:4318: checking for clock_gettime
-configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cc2FOqJz.o: In function `main':
-/home/diego/Estágio/brtablet/conftest.c:63: undefined reference to `clock_gettime'
-collect2: ld returned 1 exit status
-configure:4318: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "hello"
-| #define PACKAGE_TARNAME "hello"
-| #define PACKAGE_VERSION "0.1"
-| #define PACKAGE_STRING "hello 0.1"
-| #define PACKAGE_BUGREPORT "diego_hachmann@hotmail.com"
-| #define PACKAGE_URL ""
-| #define PACKAGE "hello"
-| #define VERSION "0.1"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_TERMIOS_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| /* end confdefs.h.  */
-| /* Define clock_gettime to an innocuous variant, in case <limits.h> declares clock_gettime.
-|    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
-| #define clock_gettime innocuous_clock_gettime
-| 
-| /* System header to define __stub macros and hopefully few prototypes,
-|     which can conflict with char clock_gettime (); below.
-|     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
-|     <limits.h> exists even on freestanding compilers.  */
-| 
-| #ifdef __STDC__
-| # include <limits.h>
-| #else
-| # include <assert.h>
-| #endif
-| 
-| #undef clock_gettime
-| 
-| /* Override any GCC internal prototype to avoid an error.
-|    Use char because int might match the return type of a GCC
-|    builtin and then its argument prototype would still apply.  */
-| #ifdef __cplusplus
-| extern "C"
-| #endif
-| char clock_gettime ();
-| /* The GNU C library defines this for functions which it implements
-|     to always fail with ENOSYS.  Some functions are actually named
-|     something starting with __ and the normal name is an alias.  */
-| #if defined __stub_clock_gettime || defined __stub___clock_gettime
-| choke me
-| #endif
-| 
-| int
-| main ()
-| {
-| return clock_gettime ();
-|   ;
-|   return 0;
-| }
-configure:4318: result: no
-configure:4318: checking for gettimeofday
-configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-configure:4318: $? = 0
-configure:4318: result: yes
-configure:4318: checking for memmove
-configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-conftest.c:53:6: warning: conflicting types for built-in function 'memmove'
-configure:4318: $? = 0
-configure:4318: result: yes
-configure:4318: checking for memset
-configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-conftest.c:54:6: warning: conflicting types for built-in function 'memset'
-configure:4318: $? = 0
-configure:4318: result: yes
-configure:4318: checking for regcomp
-configure:4318: gcc -o conftest -g -O2   conftest.c  >&5
-configure:4318: $? = 0
-configure:4318: result: yes
-configure:4450: creating ./config.status
+configure:3748: $PKG_CONFIG --exists --print-errors "gtk-2.0 >= 2.12"
+Package gtk-2.0 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `gtk-2.0.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'gtk-2.0' found
+configure:3751: $? = 1
+configure:3764: $PKG_CONFIG --exists --print-errors "gtk-2.0 >= 2.12"
+Package gtk-2.0 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `gtk-2.0.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'gtk-2.0' found
+configure:3767: $? = 1
+configure:3780: result: no
+No package 'gtk-2.0' found
+configure:3796: error: Package requirements (gtk-2.0 >= 2.12) were not met:
 
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
+No package 'gtk-2.0' found
 
-This file was extended by hello config.status 0.1, which was
-generated by GNU Autoconf 2.67.  Invocation command line was
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status 
-
-on diego-ubuntu10
-
-config.status:879: creating Makefile
-config.status:879: creating src/attach/Makefile
-config.status:879: creating src/brtablet/Makefile
-config.status:879: creating scripts/Makefile
-config.status:879: creating config.h
-config.status:1059: config.h is unchanged
-config.status:1107: executing depfiles commands
+Alternatively, you may set the environment variables GTK_CFLAGS
+and GTK_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
 
 ## ---------------- ##
 ## Cache variables. ##
@@ -407,40 +180,16 @@ ac_cv_env_host_alias_set=
 ac_cv_env_host_alias_value=
 ac_cv_env_target_alias_set=
 ac_cv_env_target_alias_value=
-ac_cv_func_clock_gettime=no
-ac_cv_func_gettimeofday=yes
-ac_cv_func_malloc_0_nonnull=yes
-ac_cv_func_memmove=yes
-ac_cv_func_memset=yes
-ac_cv_func_regcomp=yes
-ac_cv_header_fcntl_h=yes
-ac_cv_header_inttypes_h=yes
-ac_cv_header_memory_h=yes
-ac_cv_header_stdc=yes
-ac_cv_header_stdint_h=yes
-ac_cv_header_stdlib_h=yes
-ac_cv_header_string_h=yes
-ac_cv_header_strings_h=yes
-ac_cv_header_sys_stat_h=yes
-ac_cv_header_sys_time_h=yes
-ac_cv_header_sys_types_h=yes
-ac_cv_header_termios_h=yes
-ac_cv_header_unistd_h=yes
 ac_cv_objext=o
-ac_cv_path_EGREP='/bin/grep -E'
-ac_cv_path_GREP=/bin/grep
 ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_mkdir=/bin/mkdir
 ac_cv_prog_AWK=mawk
-ac_cv_prog_CPP='gcc -E'
 ac_cv_prog_ac_ct_CC=gcc
 ac_cv_prog_cc_c89=
 ac_cv_prog_cc_g=yes
 ac_cv_prog_make_make_set=yes
 am_cv_CC_dependencies_compiler_type=gcc3
-pkg_cv_GTK_CFLAGS='-pthread -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pixman-1  '
-pkg_cv_GTK_LIBS='-pthread -L/usr/lib/i386-linux-gnu -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  '
 
 ## ----------------- ##
 ## Output variables. ##
@@ -458,19 +207,19 @@ AWK='mawk'
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
 CFLAGS='-g -O2'
-CPP='gcc -E'
+CPP=''
 CPPFLAGS=''
 CYGPATH_W='echo'
-DEFS='-DHAVE_CONFIG_H'
+DEFS=''
 DEPDIR='.deps'
 ECHO_C=''
 ECHO_N='-n'
 ECHO_T=''
-EGREP='/bin/grep -E'
+EGREP=''
 EXEEXT=''
-GREP='/bin/grep'
-GTK_CFLAGS='-pthread -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pixman-1  '
-GTK_LIBS='-pthread -L/usr/lib/i386-linux-gnu -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  '
+GREP=''
+GTK_CFLAGS=''
+GTK_LIBS=''
 INSTALL_DATA='${INSTALL} -m 644'
 INSTALL_PROGRAM='${INSTALL}'
 INSTALL_SCRIPT='${INSTALL}'
@@ -499,7 +248,7 @@ STRIP=''
 VERSION='0.1'
 ac_ct_CC='gcc'
 am__EXEEXT_FALSE=''
-am__EXEEXT_TRUE='#'
+am__EXEEXT_TRUE=''
 am__fastdepCC_FALSE='#'
 am__fastdepCC_TRUE=''
 am__include='include'
@@ -514,7 +263,7 @@ datadir='${datarootdir}'
 datarootdir='${prefix}/share'
 docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
 dvidir='${docdir}'
-exec_prefix='${prefix}'
+exec_prefix='NONE'
 host_alias=''
 htmldir='${docdir}'
 includedir='${prefix}/include'
@@ -528,7 +277,7 @@ mandir='${datarootdir}/man'
 mkdir_p='/bin/mkdir -p'
 oldincludedir='/usr/include'
 pdfdir='${docdir}'
-prefix='/usr/local'
+prefix='NONE'
 program_transform_name='s,x,x,'
 psdir='${docdir}'
 sbindir='${exec_prefix}/sbin'
@@ -549,27 +298,5 @@ target_alias=''
 #define PACKAGE_URL ""
 #define PACKAGE "hello"
 #define VERSION "0.1"
-#define STDC_HEADERS 1
-#define HAVE_SYS_TYPES_H 1
-#define HAVE_SYS_STAT_H 1
-#define HAVE_STDLIB_H 1
-#define HAVE_STRING_H 1
-#define HAVE_MEMORY_H 1
-#define HAVE_STRINGS_H 1
-#define HAVE_INTTYPES_H 1
-#define HAVE_STDINT_H 1
-#define HAVE_UNISTD_H 1
-#define HAVE_FCNTL_H 1
-#define HAVE_STDLIB_H 1
-#define HAVE_STRING_H 1
-#define HAVE_SYS_TIME_H 1
-#define HAVE_TERMIOS_H 1
-#define HAVE_UNISTD_H 1
-#define HAVE_STDLIB_H 1
-#define HAVE_MALLOC 1
-#define HAVE_GETTIMEOFDAY 1
-#define HAVE_MEMMOVE 1
-#define HAVE_MEMSET 1
-#define HAVE_REGCOMP 1
 
-configure: exit 0
+configure: exit 1
