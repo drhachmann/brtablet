@@ -548,8 +548,10 @@ int inputattach(int argc, char **argv){
 		perror("inputattach");
 		retval = EXIT_FAILURE;
 	}
-	/*pode ser aki*/
-	read(fd, NULL, 0);
+
+	if(read(fd, NULL, 0)<0){
+		
+	}
 
 	ldisc = 0;
 	ioctl(fd, TIOCSETD, &ldisc);/*ou aki*/
@@ -560,56 +562,32 @@ int inputattach(int argc, char **argv){
 
 int main(int argc, char **argv){
 
-	
-	/*char device[100];
-
-	//set device
-	if(argc==2 && argv[1][0]=='/'){
-		FILE *fp = fopen(PATH_FILE_DEVICE, "w");
-		if(fp==NULL){
-			printf("Can't Open File %s\n", PATH_FILE_DEVICE);
-			printf("%s\n\n",(char*)strerror(errno));
-			exit(-1);
-		}
-		strcpy(device, argv[1]);
-		fprintf(fp, "%s", argv[1]);
-		fclose(fp);
-	}else{
-		FILE *fp = fopen(PATH_FILE_DEVICE, "r");
-		if(fp==NULL){
-			printf("Can't Open File %s\n", PATH_FILE_DEVICE);
-			printf("%s\n\n",(char*)strerror(errno));
-			exit(-1);
-		}
-		fscanf(fp, "%s", device);
-		fclose(fp);
-	}*/
 	char msg[100];
 	char **arg = (char **)malloc(sizeof(char *)*3);
 	int i;
+
 	for(i=0; i<3; i++)
 		arg[i] = (char *)malloc(sizeof(char)*50);
 	
 	strcpy(arg[0], "inputattach");
 	strcpy(arg[1], "--brtablet");
 	strcpy(arg[2], argv[1]);
+
 	if(access(PATH_LOCK_ATTACH, R_OK)==0){
 		sprintf(msg, "rm %s", PATH_LOCK_ATTACH);
-		system(msg);
+		if(system(msg)<0){
+			perror(msg);
+		}
 	}
 	
 	if(inputattach(3, arg)==EXIT_FAILURE){
 		sprintf(msg, "touch %s", PATH_LOCK_ATTACH);
-		system(msg);
+		if(system(msg)<0){
+			perror(msg);
+		}
 	}
 	
-	/*if(device!=NULL){
-		strcpy(arg[2], device);
-		inputattach(3, arg);
-	}else{
-		inputattach(2, arg);
-	}*/
-	
+
 	for(i=0; i<3; i++)
 		free(arg[i]);
 	free(arg);

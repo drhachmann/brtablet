@@ -4,7 +4,7 @@ AUTOMAKE_OPTIONS = foreign
 
 SUBDIRS = src/driver\
 			 src/attach\
-			 src/calibrator\
+			 src/brtablet\
 			 scripts
 
 dist_doc_DATA = README

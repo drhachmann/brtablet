@@ -31,7 +31,7 @@ AC_CHECK_FUNCS([clock_gettime gettimeofday memmove memset regcomp])
 
 AC_CONFIG_FILES([Makefile
                 src/attach/Makefile
-					 src/calibrator/Makefile
+					 src/brtablet/Makefile
 					 scripts/Makefile])
 
 AC_OUTPUT

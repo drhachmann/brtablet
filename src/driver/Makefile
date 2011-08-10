@@ -16,7 +16,6 @@ install:
 clean:
 	$(MAKE)  -C $(KERNELDIR) M=`pwd` clean
 	
-uninstall:
 
 
 #ifneq ($(KERNELRELEASE),)

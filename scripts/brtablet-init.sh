@@ -2,7 +2,7 @@
 
 case "$1" in
   start)
-    sudo brtablet-calibrator --start
+    sudo brtablet --start
     ;;
   stop)
 #    log_begin_msg "Disabling power management..."

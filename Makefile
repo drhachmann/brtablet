@@ -13,7 +13,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-#diego
+
 
 #http://www.gnu.org/s/hello/manual/automake/Scripts.html
 
@@ -219,7 +219,7 @@ top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src/driver\
 			 src/attach\
-			 src/calibrator\
+			 src/brtablet\
 			 scripts
 
 dist_doc_DATA = README
