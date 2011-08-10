@@ -1,0 +1,5 @@
+brtablet-gui_common.o: gui_common.c gui_common.h util.h
+
+gui_common.h:
+
+util.h:
