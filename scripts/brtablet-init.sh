@@ -3,12 +3,10 @@
 case "$1" in
   start)
     sudo brtablet --start
+	 echo "AA" > /etc/brtablet/AAA
     ;;
   stop)
-#    log_begin_msg "Disabling power management..."
-#	  echo "automatico" > /etc/brtablet/arquivo2
-#    log_end_msg 0
-    ;;
+	sudo brtablet --stop;;
   *)
   ;;
 esac

@@ -16,7 +16,9 @@ install:
 clean:
 	$(MAKE)  -C $(KERNELDIR) M=`pwd` clean
 	
-
+uninstall:
+	modprobe -r brtablet-driver
+	depmod --quick
 
 #ifneq ($(KERNELRELEASE),)
 # kbuild part
