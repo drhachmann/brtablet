@@ -39,7 +39,9 @@ Inicie o driver:
 		brtablet --init --detect (movimente a caneta sobre a tela quando solicitado)
 	
 	Nota: Quando o computador for reiniciado, o driver será iniciado automáticamente com
-			último arquivo do dispositivo informado ou detectado.
+			último arquivo do dispositivo informado ou detectado. O nome do arquivo do dipositivo
+			poderá mudar, e o driver não será inicializado.	Caso o driver não inicie automáticamente, 
+			execute o passo acima novamente.
 	
 Para ajuda, tecle no terminal: brtablet --help
 
